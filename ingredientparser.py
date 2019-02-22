@@ -41,7 +41,8 @@ def parseIngredient(i):
 		ingredient.name = " ".join(i_words[name:len(i_words)]).strip()
 	else:
 		if i_words[1][0].isnumeric():
-			ingredient.measurement = " ".join(i_words[1:3]).strip()
+			ingredient.quantity = " ".join([i_words[0],i_words[1]]).strip()
+			ingredient.measurement = i_words[2]
 			ingredient.name = " ".join(i_words[3:len(i_words)]).strip()
 		else:
 			ingredient.measurement = i_words[1].strip()

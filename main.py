@@ -31,3 +31,10 @@ for i in range(0, number_of_steps):
 for i in scraped_ingredients:
 	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
 	print("")
+
+# find tools and methods
+
+
+#parse the steps
+#separate sentences
+#look for duration/ingredients and methods
