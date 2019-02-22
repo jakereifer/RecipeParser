@@ -40,7 +40,7 @@ def parseIngredient(i):
 				break
 		ingredient.name = " ".join(i_words[name:len(i_words)]).strip()
 	else:
-		if i_words[1][0].isnumeric():
+		if i_words[1][0].isnumeric() and len(i_words) > 3:
 			ingredient.quantity = " ".join([i_words[0],i_words[1]]).strip()
 			ingredient.measurement = i_words[2]
 			ingredient.name = " ".join(i_words[3:len(i_words)]).strip()
