@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import playground
+import ingredientparser
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")
@@ -29,5 +29,5 @@ for i in range(0, number_of_steps):
 
 #Print parsed ingredients
 for i in scraped_ingredients:
-	playground.printIngredient(playground.parseIngredient(i))
+	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
 	print("")
