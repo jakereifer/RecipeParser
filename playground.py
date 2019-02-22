@@ -1,26 +1,13 @@
-from bs4 import BeautifulSoup
-import requests
-
-def findWordsInSteps(tools, steps):
-	toolsfound = []
-	for step in steps:
-		for tool in tools:
-			if tool in step.lower():
-				toolsfound.append(tool.capitalize())
-	return toolsfound
 
 
-tools = ["spoon", "fork", "knife", "oven"]
-steps = ["use a fork and spoon", "put it in the oven"]
-
-"""
-
- Ingredient name
-  Quantity
-  Measurement (cup, teaspoon, pinch, etc.)
-  (optional) Descriptor (e.g. fresh, extra-virgin)
-  (optional) Preparation (e.g. finely chopped)
-"""
+# returns a list of the "keywords" found in "strings"
+def findWordsInSteps(keywords, strings):
+	keywordsfound = []
+	for string in strings:
+		for keyword in keywords:
+			if keyword in string.lower():
+				keywordsfound.append(keyword.capitalize())
+	return keywordsfound
 
 class Ingredient(object):
 	name = ""
@@ -29,6 +16,7 @@ class Ingredient(object):
 	descriptor = ""
 	preparation = ""
 
+# parses the ingredient (no descriptor yet) (works for most types)
 def parseIngredient(i):
 	# words of the ingredient
 	i_words = i.split()
@@ -78,6 +66,7 @@ def parseIngredient(i):
 	# trim whitespace
 	return ingredient
 
+# Print the ingredient in a human friendly manner
 def printIngredient(i):
 	if i.name:
 		print("Name: ", i.name)
@@ -90,31 +79,4 @@ def printIngredient(i):
 	if i.preparation:
 		print("Preparation: ", i.preparation)
 
-# Prompt
-page_link = input("Please enter a recipe URL: ")
-page_response = requests.get(page_link, timeout=5)
-page_content = BeautifulSoup(page_response.content, "html.parser")
 
-# Scrape for recipe title
-recipe_title = page_content.find("h1", {"id": "recipe-main-content"}).text
-print("")
-print(recipe_title)
-print("")
-
-# Scrape for ingredients
-scraped_ingredients = [] #
-number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
-for i in range(0, number_of_ingredients):
-    ingredient_string = page_content.find_all("span", {"class": "recipe-ingred_txt added"})[i].text
-    scraped_ingredients.append(ingredient_string.strip())
-
-# Scrape for steps
-scraped_steps = []
-number_of_steps = len(page_content.find_all("span", {"class": "recipe-directions__list--item"}))
-for i in range(0, number_of_steps):
-    step_string = page_content.find_all("span", {"class": "recipe-directions__list--item"})[i].text
-    scraped_steps.append(step_string.strip())
-
-for i in scraped_ingredients:
-	printIngredient(parseIngredient(i))
-	print("")
