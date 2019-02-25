@@ -1,16 +1,16 @@
 import pandas as pd
-import measurements
+# import measurements
 
 class Unit(object):
 	name = ''
 	aliases = []
 
-	def __init__(name, aliases=[]):
-		self.name = name
-		self.aliases = aliases
+	def __init__(self, n='', a=[]):
+		self.name = n
+		self.aliases = a
 
 measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
-							Unit('tablespoon' ['T', 'tbl', 'tbs', 'tbsp']),
+							Unit('tablespoon', ['T', 'tbl', 'tbs', 'tbsp']),
 							Unit('fluid ounce',['fl oz']),
 							Unit('cup', ['c']),
 							Unit('pint', ['p', 'pt', 'fl pt']),
@@ -24,7 +24,7 @@ measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
 								Unit('gram', ['g', 'gramme']),
 								Unit('kilogram', ['kg', 'kilogramme'])],
 				'time': [ Unit('day',[]),
-						Unit('hour', ['hr'])
+						Unit('hour', ['hr']),
 						Unit('minute', ['min']),
 						Unit('second', ['sec', 's'])]
 				}
@@ -56,7 +56,7 @@ veg_proteins = ['tofu', 'tempeh', 'seitan', 'jackfruit', 'lentils', 'beans',
 				'chickpeas', 'falafel', 'nuts', 'soy', 'vegetarian bacon', 'veggie burger'
 				'tofurkey', 'vegetarian hot dog', 'quinoa']
 
-meat_subs = {'burger': ['veggie burger', 'black bean burger']
+meat_subs = {'burger': ['veggie burger', 'black bean burger'],
 			'meatball': [],
 			'hot dog': [],
 			'sausage': [],

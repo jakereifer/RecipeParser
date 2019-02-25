@@ -59,7 +59,7 @@ def parseIngredient(i):
 
 # parse the amount needed in decimal
 def parse_amount(i):
-
+	return
 
 # Print the ingredient in a human friendly manner
 def printIngredient(i):
