@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import ingredientparser
+import knowledgebase
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")

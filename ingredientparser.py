@@ -1,3 +1,4 @@
+import knowledgebase
 class Ingredient(object):
 	name = ""
 	quantity = ""
@@ -55,6 +56,10 @@ def parseIngredient(i):
 			ingredient.name = ingredient.name.split(pd)[0].strip()
 	# trim whitespace
 	return ingredient
+
+# parse the amount needed in decimal
+def parse_amount(i):
+
 
 # Print the ingredient in a human friendly manner
 def printIngredient(i):
