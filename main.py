@@ -1,6 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 import ingredientparser
+import knowledgebase
+
+
+# test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
+# https://www.allrecipes.com/recipe/10552/giant-chocolate-chip-cookie/?internalSource=hub%20recipe&referringContentType=Search
+# with parens: https://www.allrecipes.com/recipe/8350/chantals-new-york-cheesecake/?internalSource=hub%20recipe&referringId=79&referringContentType=Recipe%20Hub&clickId=cardslot%2015
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")
