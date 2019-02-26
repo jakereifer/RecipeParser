@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import ingredientparser
 import re
+import stepparsery
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")
@@ -34,19 +35,27 @@ for i in range(0, number_of_steps):
 # 	print("")
 
 
+class Step(object):
+	def __init__(self):
+		self.text = ""
+		self.ingList = []
+		self.time = ""
+		self.methods = []
+		self.tools = []
 
 # Step Parsing
 
-stopWords = ['a', 'in', 'the', 'to']
-timeMeasures = ['minutes', 'hours', 'seconds']
 commonIngredients = ['water']
 
-tempIngredientNames = []
+ingredientNames = []
 for i in scraped_ingredients:
 	parsed = ingredientparser.parseIngredient(i)
-	tempIngredientNames.append(parsed.name)
+	ingredientNames.append(parsed.name)
 
-ingredientNames = tempIngredientNames + commonIngredients
+# update this!
+for i in commonIngredients:
+	if not i in ingredientNames:
+		ingredientNames.append(i)
 
 # seperate scraped_steps by period
 # seperate by semicolon also!
@@ -56,23 +65,26 @@ for step in scraped_steps:
 
 scraped_steps = temp
 
+stepsDic= {}
+
+print('Ingredients: ', ingredientNames)
+
 for step in scraped_steps:
-	print("current step: ", step)
+	if step == "":
+		continue
 	step = re.sub(r'[^\w\s]','',step)
-	foundNumber = False
-	for word in step.split():
-		# find ingredients
-		for i in ingredientNames:
-			if word in i and not word in stopWords:
-				print("Found Ingredient: ", i)
-		# do same for method and tools with csvs
-		# find times
-		if word.isdigit():
-			print("found number: ", word)
-			foundNumber = True
-		for m in timeMeasures:
-			if word in m and not word in stopWords:
-				print("found time measure: ", m)
+	stepsDic[step] = Step()
+
+	# Find ingredients
+	stepsDic[step].ingList = stepparsery.findIngredients(step, ingredientNames)
+
+	# find times
+	stepsDic[step].time = stepparsery.findTimes(step)
+
+
+stepparsery.printStepInfo(stepsDic)
+
+			
 
 
 
