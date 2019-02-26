@@ -1,5 +1,6 @@
 import pandas as pd
 # import measurements
+from helpers import Ingredient
 
 class Unit(object):
 	name = ''
@@ -30,37 +31,43 @@ measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
 				}
 
 # not case sensitive
-meats = ["Bacon", "Beef", "Bison", "Blood", "Chicken",
-		 "Cooking Chicken","Chorizo", "Cornish Game Hen",
-		 "Duck", "Foie Gras", "Game", "Giblets", "Goat",
-		 "Goose", "Guinea Pig", "Ham", "Hedgehog", "Horse",
-		 "Hot Dog", "Kidney", "Kielbasa", "Lamb", "Liver",
-		 "Mortadella", "Mutton", "Neck Sweetbread", "Organ Meat",
-		 "Ostrich", "Pancetta", "Pastrami", "Pepperoni", "Pork",
-		 "Prosciutto", "Quail", "Rabbit", "Salami", "Sausage",
-		 "Sausage Casing", "Squirrel", "Stomach Sweetbread",
-		 "Sweetbread", "Tongue", "Tripe", "Turkey", "Veal", "Venison", "Burger", "Meatballs"]
+meats = [ Ingredient(name="bacon"), Ingredient(name="beef"), Ingredient(name="bison"), Ingredient(name="blood"), Ingredient(name="chicken"),Ingredient(name="chorizo"), Ingredient(name="cornish game hen"),
+			Ingredient(name="duck"), Ingredient(name="foie gras"), Ingredient(name="game"), Ingredient(name="giblets"), Ingredient(name="goat"),
+			Ingredient(name="goose"), Ingredient(name="guinea pig"), Ingredient(name="ham"), Ingredient(name="hedgehog"), Ingredient(name="horse"),
+			Ingredient(name="hot dog"), Ingredient(name="kidney"), Ingredient(name="kielbasa"), Ingredient(name="lamb"), Ingredient(name="liver"),
+			Ingredient(name="mortadella"), Ingredient(name="mutton"), Ingredient(name="neck sweetbread"), Ingredient(name="organ meat"),
+			Ingredient(name="ostrich"), Ingredient(name="pancetta"), Ingredient(name="pastrami"), Ingredient(name="pepperoni"), Ingredient(name="pork"),
+			Ingredient(name="prosciutto"), Ingredient(name="quail"), Ingredient(name="rabbit"), Ingredient(name="salami"), Ingredient(name="sausage"),
+			Ingredient(name="sausage casing"), Ingredient(name="squirrel"), Ingredient(name="stomach sweetbread"),
+			Ingredient(name="sweetbread"), Ingredient(name="tongue"), Ingredient(name="tripe"), Ingredient(name="turkey"), Ingredient(name="veal"), Ingredient(name="venison"), Ingredient(name="burger"), Ingredient(name="meatballs")]
 
 # not case sensitive
-seafood= ["Salmon", "Cod", "Halibut", "Mahi mahi", "Tuna", "Shark",
-			"Swordfish", "Sturgeon", "Catfish", "Trout", "Sardine", 
-			"Anchovy", "Arctic char", "Crab", "Crayfish", "Lobster", 
-			"Shrimp", "Molluscs", "Abalone", "Clam", "Cockle", "Mussel",
-			"Octopus", "Oyster", "Pipi", "Snail", "Conch", "Whelk",
-			"Winkle", "Squid", "Calamari", "Scallop", "Caviar", "Uni",
-			"Sea Cucumber", "Hagfish", "Tuna", "Ikura"]
+seafood= [ Ingredient(name="salmon"), Ingredient(name="cod"), Ingredient(name="halibut"), Ingredient(name="mahi mahi"), Ingredient(name="tuna"), Ingredient(name="shark"),
+			Ingredient(name="swordfish"), Ingredient(name="sturgeon"), Ingredient(name="catfish"), Ingredient(name="trout"), Ingredient(name="sardine"), 
+			Ingredient(name="anchovy"), Ingredient(name="arctic char"), Ingredient(name="crab"), Ingredient(name="crayfish"), Ingredient(name="lobster"), 
+			Ingredient(name="shrimp"), Ingredient(name="molluscs"), Ingredient(name="abalone"), Ingredient(name="clam"), Ingredient(name="cockle"), Ingredient(name="mussel"),
+			Ingredient(name="octopus"), Ingredient(name="oyster"), Ingredient(name="pipi"), Ingredient(name="snail"), Ingredient(name="conch"), Ingredient(name="whelk"),
+			Ingredient(name="winkle"), Ingredient(name="squid"), Ingredient(name="calamari"), Ingredient(name="scallop"), Ingredient(name="caviar"), Ingredient(name="uni"),
+			Ingredient(name="sea cucumber"), Ingredient(name="hagfish"), Ingredient(name="tuna"), Ingredient(name="ikura")]
 
 #veg_proteins
-veg_proteins = ['tofu', 'tempeh', 'seitan', 'jackfruit', 'lentils', 'beans',
-				'legumes', 'texturized vegetable protein',#tvp
-				'chickpeas', 'falafel', 'nuts', 'soy', 'vegetarian bacon', 'veggie burger'
-				'tofurkey', 'vegetarian hot dog', 'quinoa']
+veg_proteins = [ Ingredient(name='tofu'), Ingredient(name='tempeh'), Ingredient(name='seitan'), Ingredient(name='jackfruit'), Ingredient(name='lentils'), Ingredient(name='beans'),
+				Ingredient(name='legumes'), Ingredient(name='texturized vegetable protein (TVP)'),#tvp
+				Ingredient(name='chickpeas'), Ingredient(name='falafel'), Ingredient(name='nuts'), Ingredient(name='soy'), Ingredient(name='vegetarian bacon'), Ingredient(name='veggie burger'),
+				Ingredient(name='tofurkey'), Ingredient(name='veggie dog dog'), Ingredient(name='quinoa')]
 
-meat_subs = {'burger': ['veggie burger', 'black bean burger'],
-			'meatball': [],
-			'hot dog': [],
-			'sausage': [],
-			'chicken': []}
+meat_subs = { Ingredient(name='hamburger'): [Ingredient(name='veggie burger'), Ingredient(name='black bean burger')],
+				Ingredient(name='meatball'): [Ingredient(name='veggie meatballs')],
+				Ingredient(name='hot dog'): [Ingredient(name='veggie dog')],
+				Ingredient(name='sausage'): [Ingredient(name='veggie sausage'), Ingredient(name='tempeh')],
+				Ingredient(name='chicken'): [Ingredient(name='chick\'n'), Ingredient(name='tofu'), Ingredient(name='seitan')],
+				Ingredient(name='default'): [Ingredient(name='tofu'), Ingredient(name="texturized vegetable protein (TVP)")],
+				Ingredient(name='pork'): [Ingredient(name='seitan')],
+				Ingredient(name='turkey'): [Ingredient(name='tofurkey')],
+				Ingredient(name='beef'): [Ingredient(name='tofu'), Ingredient(name='seitan')],
+				Ingredient(name='fish'): [Ingredient(name='tofu')],
+				Ingredient(name='chorizo'): [Ingredient(name='beans')]
+				}
 
 
 

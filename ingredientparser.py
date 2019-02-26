@@ -1,17 +1,5 @@
 import knowledgebase
-class Ingredient(object):
-	name = ""
-	quantity = 0
-	measurement = ""
-	descriptor = ""
-	preparation = ""
-
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
-		self.name = name
-		self.quantity = quantity,
-		self.measurement = measurement
-		self.descriptor = desc
-		self.preparation = prep
+from helpers import *
 
 # parses the ingredient (no descriptor yet) (works for most types)
 def parseIngredient(i):
