@@ -1,4 +1,5 @@
 # returns a list of the "keywords" found in "strings"
+import ingredientparser
 def findWordsInSteps(keywords, strings):
 	keywordsfound = []
 	for string in strings:
@@ -26,3 +27,17 @@ class Recipe(object):
 		self.s_methods = s_methods
 		self.tools = tools
 		self.tags = tags
+
+	def display(self):
+		print("Recipe Name: ", self.name)
+		print("Tools Needed: ", self.tools)
+		print("Primary Methods Used: ", self.p_methods)
+		print("Secondary Methods Used: ", self.s_methods)
+		print("List of Ingredients:")
+		for i in self.ingredients:
+			ingredientparser.printIngredient(i)
+		print("\n")
+		print("List of Steps:")
+		for s in self.steps:
+			print(s)
+		print("\n")
