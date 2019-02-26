@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import ingredientparser
 import knowledgebase
-
+import helpers
 
 # test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
 # https://www.allrecipes.com/recipe/10552/giant-chocolate-chip-cookie/?internalSource=hub%20recipe&referringContentType=Search
@@ -44,3 +44,56 @@ for i in scraped_ingredients:
 #parse the steps
 #separate sentences
 #look for duration/ingredients and methods
+
+"""
+#Primary methods
+primary_methods = set()
+for step in scraped_steps:
+	primary_methods.update(helpers.findWordsInStep(knowledgebase.primary_methods, step))
+print("Primary Methods: ", list(primary_methods))
+
+#Tools
+
+tools = set()
+for step in scraped_steps:
+	primary_methods.update(helpers.findWordsInStep(knowledgebase.tools, step))
+print("Tool: ", list(tools))
+
+
+
+#Step by step tools
+
+def checkTransformationSelection(s):
+	if s.lower() == 'a':
+		return True
+	if s.lower() == 'b':
+		return True
+	if s.lower() == 'c':
+		return True
+	if s.lower() == 'd':
+		return True
+	if s.lower() == 'e':
+		return True
+	return False
+
+valid_transformation = False
+transformation_selection = ""
+while (!valid_transformation):
+	print("")
+	print("What type of transformation would you like to make?")
+	print("		a - to vegetarian")
+	print("		b - from vegetarian")
+	print("		c - to healthy")
+	print("		d - from healthy")
+	print("		e - to style")
+	transformation_selection = input("Please input the letter of the choice you would like: ")
+	if checkTransformationSelection(transformation_selection):
+		valid_transformation = True
+	else:
+		print("Invalid input")
+		print("")
+
+"""
+
+
+

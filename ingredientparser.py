@@ -1,4 +1,5 @@
 import knowledgebase
+
 class Ingredient(object):
 	name = ""
 	quantity = 0
@@ -8,7 +9,7 @@ class Ingredient(object):
 
 	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
 		self.name = name
-		self.quantity = quantity,
+		self.quantity = quantity
 		self.measurement = measurement
 		self.descriptor = desc
 		self.preparation = prep
@@ -23,48 +24,101 @@ def parseIngredient(i):
 		return ingredient
 	# 2 eggs	
 	if len(i_words) == 2:
-		if i_words[0].isnumeric():
+		if i_words[0][0].isnumeric():
 			ingredient.quantity = parse_amount(i_words[0])
 			ingredient.name = i_words[1]
 			ingredient.measurement = "count"
+		else:
+			ingredient.name = " ".join(i_words)
 		return ingredient
+	
 	name = 0
 	prep_dividers = [",", " - "]
-	# last word index
-	end = len(i_words)-1
-	# Get the quantityquantity
-	if i[0].isnumeric():
-		ingredient.quantity = parse_amount(i_words[0])
-		# print(ingredient.quantity)
-	else:
-		ingredient.name = i.strip()
-		return ingredient
-	# if there is an open parenthesis
-	if i_words[1][0] == "(":
-		for i in range(1,len(i_words)):
-			if i_words[i][len(i_words[i])-1] == ")":
-				ingredient.measurement = " ".join(i_words[1:i+2]).strip()
-				name = i + 2
+	prep_words = knowledgebase.preparations
+	unit_words = knowledgebase.units
+	two_word_units = ["fluid ounce", "fl oz"]
+	left_side = ""
+	right_side = ""
+	found_unit = False
+	# search for units
+	for i in range(0,len(i_words)):
+		if found_unit:
+			break
+		for uw in unit_words:
+			if i_words[i].lower() == uw:
+				ingredient.measurement = uw
+				found_unit = True
+				left_side = (" ".join(i_words)).split(uw)[0]
+				right_side = (" ".join(i_words)).split(uw)[1]
 				break
-		ingredient.name = " ".join(i_words[name:len(i_words)]).strip()
-	else:
-		if i_words[1][0].isnumeric() and len(i_words) > 3:
-			ingredient.quantity = float(i_words[0]) + parse_amount(i_words[1])
-			ingredient.measurement = i_words[2]
-			ingredient.name = " ".join(i_words[3:len(i_words)]).strip()
+			elif i_words[i].lower() == uw+'s':
+				ingredient.measurement = uw
+				found_unit = True
+				left_side = (" ".join(i_words)).split(uw+'s')[0]
+				right_side = (" ".join(i_words)).split(uw+'s')[1]
+				break
+		for twu in two_word_units:
+			if i_words[i].lower() == twu.split()[0] and i+1 < len(i_words):
+				if i_words[i+1].lower() == twu.split()[1]:
+					ingredient.measurement = twu
+					found_unit = True
+					left_side = (" ".join(i_words)).split(twu)[0]
+					right_side = (" ".join(i_words)).split(twu)[1]
+					break
+				if i_words[i+1].lower() == twu.split()[1]+'s':
+					ingredient.measurement = twu
+					found_unit = True
+					left_side = (" ".join(i_words)).split(twu+'s')[0]
+					right_side = (" ".join(i_words)).split(twu+'s')[1]
+					break
+	#if we didnt find a unit
+	if not found_unit:
+		if not i_words[0][0].isnumeric():
+			ingredient.name = " ".join(i_words)
+			left_side = ""
+			right_side = ingredient.name
 		else:
-			ingredient.measurement = i_words[1].strip()
-			ingredient.name = " ".join(i_words[2:len(i_words)]).strip()
-	
-	#check to see if there are preparation instructions
+			for i in range(1,len(i_words)):
+				if not i_words[i][0].isnumeric():
+					left_side = " ".join(i_words[:i])
+					right_side = " ".join(i_words[i:])
+					break
+	#look at the left side
+	left_side = left_side.strip()
+	if '(' in left_side:
+		ingredient.quantity = parse_amount(left_side.split('(')[0].strip())
+		ingredient.measurement = '('+ left_side.split('(')[1].strip() + " " + ingredient.measurement
+	else:
+		ingredient.quantity = parse_amount(left_side.strip())
+	#look at the right side
+	right_side = right_side.strip()
+	#look if there is preparation steps
 	for pd in prep_dividers:
-		if pd in ingredient.name:
-			ingredient.preparation = ingredient.name.split(pd)[1].strip()
-			ingredient.name = ingredient.name.split(pd)[0].strip()
-	# trim whitespace
+		if pd in right_side:
+			ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
+			ingredient.name = right_side.split(pd)[0].strip()
+			right_side = ingredient.name
+	rs_words = right_side.split()
+	found_prep = False
+	for i in range(0,len(rs_words)):
+		if found_prep:
+			break
+		for pw in prep_words:
+			if pw == rs_words[i]:
+				found_prep = True
+				if len(rs_words) > i+1:
+					ingredient.name = " ".join(rs_words[i+1:])
+				else:
+					ingredient.name = rightside
+					return ingredient
+				if not ingredient.preparation == "":
+					ingredient.preparation = ingredient.preparation + ", " + " ".join(rs_words[:i+1])
+				else:
+					ingredient.preparation = " ".join(rs_words[:i+1])
+				break
+	if not found_prep:
+		ingredient.name = right_side
 	return ingredient
-
-
 
 
 # parse the amount needed in decimal
@@ -93,4 +147,5 @@ def printIngredient(i):
 	if i.preparation:
 		print("Preparation: ", i.preparation)
 
-
+# x = "2 cloves garlic, minced"
+# printIngredient(parseIngredient(x))
