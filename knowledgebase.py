@@ -1,4 +1,5 @@
 import pandas as pd
+import helpers
 # import measurements
 
 class Unit(object):
@@ -62,6 +63,52 @@ meat_subs = {'burger': ['veggie burger', 'black bean burger'],
 			'sausage': [],
 			'chicken': []}
 
+tools = ["toaster", "blow torch", "broiler, ""baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet","colander","cutting board","double boiler","dutch oven","foil","food processer ","fork","frying pan","funnel","garlic press","grill","hand mixer","knife","ladel","mandoline","measuring cup","microplane", "mortar","paper towel","parchment paper","paring knife","peeler","pesltle","plastic wrap","plate","pot","rack",'ramekin',"roasting pan","rolling pin","saucepan","sheet pan","sieve","skewer","skillet","smoker","spatula","spoon","stand mixer","stock pot","thermometer","timer","tongs","twine","whisk"]
+
+primary_methods = ["bake","barbeque","boil","broil","braise","carmelize","flambe","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer","stir fry","stew","sweat","toast"]
+
+secondary_methods = ["arange","add","heat","brown","beat","blache","heat","cover","chop","combine","crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk"]
+
+method_tools = {
+	"bake" : "oven"
+	"barbeque": "barbeque"
+	"boil": "pot"
+	"broil": "oven"
+	"braise": "pot"
+	"carmelize" : "pan"
+	"flambe": "man"
+	"fry": "pan"
+	"grill": "grill"
+	"parkbake": "oven"
+	"parboil": "pot"
+	"poach": "pot"
+	"roast": "oven"
+	"sear": "pan"
+	"smoke": "smoker"
+	"steam": "pot"
+	"saute": "pan" 
+	"sauté" : "pan"
+	"simmer": "pot"
+	"stir fry": "pan"
+	"stew": "pot"
+	"sweat": "pan"
+	"toast": "toaster"
+}
+
+
+def addsToolsFromMethods(string):
+	m = list(set(helpers.findWordsInSteps(primary_methods, string)))
+	tools = []
+	for element in m:
+		if element in method_tools.keys():
+			tools.append(method_tools[element])
+			
+
+
+
+	# returns the list of tools needed
+
+prep_word_cutoffs = []
 
 
 
