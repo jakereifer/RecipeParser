@@ -36,13 +36,17 @@ class Ingredient(object):
 	measurement = ""
 	descriptor = ""
 	preparation = ""
+	category = ""
+	subcategory = ""
 
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
+	def __init__(self, name="", quantity=0, measurement="", desc="", prep="", category="", subcategory=""):
 		self.name = name
 		self.quantity = quantity,
 		self.measurement = measurement
 		self.descriptor = desc
 		self.preparation = prep
+		self.category = category
+		self.subcategory = subcategory
 
 
 transformations = { 0: "NONE",

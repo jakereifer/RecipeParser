@@ -31,43 +31,193 @@ measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
 				}
 
 # not case sensitive
-meats = [ Ingredient(name="bacon"), Ingredient(name="beef"), Ingredient(name="bison"), Ingredient(name="blood"), Ingredient(name="chicken"),Ingredient(name="chorizo"), Ingredient(name="cornish game hen"),
-			Ingredient(name="duck"), Ingredient(name="foie gras"), Ingredient(name="game"), Ingredient(name="giblets"), Ingredient(name="goat"),
-			Ingredient(name="goose"), Ingredient(name="guinea pig"), Ingredient(name="ham"), Ingredient(name="hedgehog"), Ingredient(name="horse"),
-			Ingredient(name="hot dog"), Ingredient(name="kidney"), Ingredient(name="kielbasa"), Ingredient(name="lamb"), Ingredient(name="liver"),
-			Ingredient(name="mortadella"), Ingredient(name="mutton"), Ingredient(name="neck sweetbread"), Ingredient(name="organ meat"),
-			Ingredient(name="ostrich"), Ingredient(name="pancetta"), Ingredient(name="pastrami"), Ingredient(name="pepperoni"), Ingredient(name="pork"),
-			Ingredient(name="prosciutto"), Ingredient(name="quail"), Ingredient(name="rabbit"), Ingredient(name="salami"), Ingredient(name="sausage"),
-			Ingredient(name="sausage casing"), Ingredient(name="squirrel"), Ingredient(name="stomach sweetbread"),
-			Ingredient(name="sweetbread"), Ingredient(name="tongue"), Ingredient(name="tripe"), Ingredient(name="turkey"), Ingredient(name="veal"), Ingredient(name="venison"), Ingredient(name="burger"), Ingredient(name="meatballs")]
+meats = [ Ingredient(name="bacon", category="protein", subcategory="meat"), Ingredient(name="beef", category="protein", subcategory="meat"), Ingredient(name="bison", category="protein", subcategory="meat"), Ingredient(name="blood", category="protein", subcategory="meat"), Ingredient(name="chicken", category="protein", subcategory="meat"),Ingredient(name="chorizo", category="protein", subcategory="meat"), Ingredient(name="cornish game hen", category="protein", subcategory="meat"),
+			Ingredient(name="duck", category="protein", subcategory="meat"), Ingredient(name="foie gras", category="protein", subcategory="meat"), Ingredient(name="game", category="protein", subcategory="meat"), Ingredient(name="giblets", category="protein", subcategory="meat"), Ingredient(name="goat", category="protein", subcategory="meat"),
+			Ingredient(name="goose", category="protein", subcategory="meat"), Ingredient(name="guinea pig", category="protein", subcategory="meat"), Ingredient(name="ham", category="protein", subcategory="meat"), Ingredient(name="hedgehog", category="protein", subcategory="meat"), Ingredient(name="horse", category="protein", subcategory="meat"),
+			Ingredient(name="hot dog", category="protein", subcategory="meat"), Ingredient(name="kidney", category="protein", subcategory="meat"), Ingredient(name="kielbasa", category="protein", subcategory="meat"), Ingredient(name="lamb", category="protein", subcategory="meat"), Ingredient(name="liver", category="protein", subcategory="meat"),
+			Ingredient(name="mortadella", category="protein", subcategory="meat"), Ingredient(name="mutton", category="protein", subcategory="meat"), Ingredient(name="neck sweetbread", category="protein", subcategory="meat"), Ingredient(name="organ meat", category="protein", subcategory="meat"),
+			Ingredient(name="ostrich", category="protein", subcategory="meat"), Ingredient(name="pancetta", category="protein", subcategory="meat"), Ingredient(name="pastrami", category="protein", subcategory="meat"), Ingredient(name="pepperoni", category="protein", subcategory="meat"), Ingredient(name="pork", category="protein", subcategory="meat"),
+			Ingredient(name="prosciutto", category="protein", subcategory="meat"), Ingredient(name="quail", category="protein", subcategory="meat"), Ingredient(name="rabbit", category="protein", subcategory="meat"), Ingredient(name="salami", category="protein", subcategory="meat"), Ingredient(name="sausage", category="protein", subcategory="meat"),
+			Ingredient(name="sausage casing", category="protein", subcategory="meat"), Ingredient(name="squirrel", category="protein", subcategory="meat"), Ingredient(name="stomach sweetbread", category="protein", subcategory="meat"),
+			Ingredient(name="sweetbread", category="protein", subcategory="meat"), Ingredient(name="tongue", category="protein", subcategory="meat"), Ingredient(name="tripe", category="protein", subcategory="meat"), Ingredient(name="turkey", category="protein", subcategory="meat"), Ingredient(name="veal", category="protein", subcategory="meat"), Ingredient(name="venison", category="protein", subcategory="meat"), Ingredient(name="burger", category="protein", subcategory="meat"), Ingredient(name="meatballs", category="protein", subcategory="meat")]
 
 # not case sensitive
-seafood= [ Ingredient(name="salmon"), Ingredient(name="cod"), Ingredient(name="halibut"), Ingredient(name="mahi mahi"), Ingredient(name="tuna"), Ingredient(name="shark"),
-			Ingredient(name="swordfish"), Ingredient(name="sturgeon"), Ingredient(name="catfish"), Ingredient(name="trout"), Ingredient(name="sardine"), 
-			Ingredient(name="anchovy"), Ingredient(name="arctic char"), Ingredient(name="crab"), Ingredient(name="crayfish"), Ingredient(name="lobster"), 
-			Ingredient(name="shrimp"), Ingredient(name="molluscs"), Ingredient(name="abalone"), Ingredient(name="clam"), Ingredient(name="cockle"), Ingredient(name="mussel"),
-			Ingredient(name="octopus"), Ingredient(name="oyster"), Ingredient(name="pipi"), Ingredient(name="snail"), Ingredient(name="conch"), Ingredient(name="whelk"),
-			Ingredient(name="winkle"), Ingredient(name="squid"), Ingredient(name="calamari"), Ingredient(name="scallop"), Ingredient(name="caviar"), Ingredient(name="uni"),
-			Ingredient(name="sea cucumber"), Ingredient(name="hagfish"), Ingredient(name="tuna"), Ingredient(name="ikura")]
+seafood= [ Ingredient(name="salmon", category="protein", subcategory="seafood"), Ingredient(name="cod", category="protein", subcategory="seafood"), Ingredient(name="halibut", category="protein", subcategory="seafood"), Ingredient(name="mahi mahi", category="protein", subcategory="seafood"), Ingredient(name="tuna", category="protein", subcategory="seafood"), Ingredient(name="shark", category="protein", subcategory="seafood"),
+			Ingredient(name="swordfish", category="protein", subcategory="seafood"), Ingredient(name="sturgeon", category="protein", subcategory="seafood"), Ingredient(name="catfish", category="protein", subcategory="seafood"), Ingredient(name="trout", category="protein", subcategory="seafood"), Ingredient(name="sardine", category="protein", subcategory="seafood"), 
+			Ingredient(name="anchovy", category="protein", subcategory="seafood"), Ingredient(name="arctic char", category="protein", subcategory="seafood"), Ingredient(name="crab", category="protein", subcategory="seafood"), Ingredient(name="crayfish", category="protein", subcategory="seafood"), Ingredient(name="lobster", category="protein", subcategory="seafood"), 
+			Ingredient(name="shrimp", category="protein", subcategory="seafood"), Ingredient(name="molluscs", category="protein", subcategory="seafood"), Ingredient(name="abalone", category="protein", subcategory="seafood"), Ingredient(name="clam", category="protein", subcategory="seafood"), Ingredient(name="cockle", category="protein", subcategory="seafood"), Ingredient(name="mussel", category="protein", subcategory="seafood"),
+			Ingredient(name="octopus", category="protein", subcategory="seafood"), Ingredient(name="oyster", category="protein", subcategory="seafood"), Ingredient(name="pipi", category="protein", subcategory="seafood"), Ingredient(name="snail", category="protein", subcategory="seafood"), Ingredient(name="conch", category="protein", subcategory="seafood"), Ingredient(name="whelk", category="protein", subcategory="seafood"),
+			Ingredient(name="winkle", category="protein", subcategory="seafood"), Ingredient(name="squid", category="protein", subcategory="seafood"), Ingredient(name="calamari", category="protein", subcategory="seafood"), Ingredient(name="scallop", category="protein", subcategory="seafood"), Ingredient(name="caviar", category="protein", subcategory="seafood"), Ingredient(name="uni", category="protein", subcategory="seafood"),
+			Ingredient(name="sea cucumber", category="protein", subcategory="seafood"), Ingredient(name="hagfish", category="protein", subcategory="seafood"), Ingredient(name="tuna", category="protein", subcategory="seafood"), Ingredient(name="ikura", category="protein", subcategory="seafood")]
+
+dairy = [
+		Ingredient(name="butter", category="protein", subcategory= "dairy")
+		Ingredient(name="ghee", category="protein", subcategory= "dairy")
+		Ingredient(name="buttermilk", category="protein", subcategory= "dairy")
+		Ingredient(name="cheese", category="protein", subcategory= "dairy")
+		Ingredient(name="cream", category="protein", subcategory= "dairy")
+		Ingredient(name="sour cream", category="protein", subcategory= "dairy")
+		Ingredient(name="whipped cream", category="protein", subcategory= "dairy")
+		Ingredient(name="milk", category="protein", subcategory= "dairy")
+		Ingredient(name="condensed milk", category="protein", subcategory= "dairy")
+		Ingredient(name="yogurt", category="protein", subcategory= "dairy")
+		Ingredient(name="lassi", category="protein", subcategory= "dairy")
+		Ingredient(name="bohrani", category="protein", subcategory= "dairy")
+		Ingredient(name="kefir", category="protein", subcategory= "dairy")
+		Ingredient(name="egg", category="protein", subcategory= "dairy")
+		Ingredient(name="egg white", category="protein", subcategory= "dairy")
+		Ingredient(name="egg yolk", category="protein", subcategory= "dairy")]
 
 #veg_proteins
-veg_proteins = [ Ingredient(name='tofu'), Ingredient(name='tempeh'), Ingredient(name='seitan'), Ingredient(name='jackfruit'), Ingredient(name='lentils'), Ingredient(name='beans'),
-				Ingredient(name='legumes'), Ingredient(name='texturized vegetable protein (TVP)'),#tvp
-				Ingredient(name='chickpeas'), Ingredient(name='falafel'), Ingredient(name='nuts'), Ingredient(name='soy'), Ingredient(name='vegetarian bacon'), Ingredient(name='veggie burger'),
-				Ingredient(name='tofurkey'), Ingredient(name='veggie dog dog'), Ingredient(name='quinoa')]
+veg_proteins = [ Ingredient(name="tofu", category="protein", subcategory="veg_protein"), Ingredient(name="tempeh", category="protein", subcategory="veg_protein"), Ingredient(name="seitan", category="protein", subcategory="veg_protein"), Ingredient(name="jackfruit", category="protein", subcategory="veg_protein"), Ingredient(name="lentils", category="protein", subcategory="veg_protein"), Ingredient(name="beans", category="protein", subcategory="veg_protein"),
+				Ingredient(name="legumes", category="protein", subcategory="veg_protein"), Ingredient(name="texturized vegetable protein (TVP)", category="protein", subcategory="veg_protein"),#tvp
+				Ingredient(name="chickpeas", category="protein", subcategory="veg_protein"), Ingredient(name="falafel", category="protein", subcategory="veg_protein"), Ingredient(name="nuts", category="protein", subcategory="veg_protein"), Ingredient(name="soy", category="protein", subcategory="veg_protein"), Ingredient(name="vegetarian bacon", category="protein", subcategory="veg_protein"), Ingredient(name="veggie burger", category="protein", subcategory="veg_protein"),
+				Ingredient(name="tofurkey", category="protein", subcategory="veg_protein"), Ingredient(name="veggie dog", category="protein", subcategory="veg_protein"), Ingredient(name="quinoa", category="protein", subcategory="veg_protein"), Ingredient(name='chik\'n', category="protein", subcategory="veg_protein")]
 
-meat_subs = { Ingredient(name='hamburger'): [Ingredient(name='veggie burger'), Ingredient(name='black bean burger')],
-				Ingredient(name='meatball'): [Ingredient(name='veggie meatballs')],
-				Ingredient(name='hot dog'): [Ingredient(name='veggie dog')],
-				Ingredient(name='sausage'): [Ingredient(name='veggie sausage'), Ingredient(name='tempeh')],
-				Ingredient(name='chicken'): [Ingredient(name='chick\'n'), Ingredient(name='tofu'), Ingredient(name='seitan')],
-				Ingredient(name='default'): [Ingredient(name='tofu'), Ingredient(name="texturized vegetable protein (TVP)")],
-				Ingredient(name='pork'): [Ingredient(name='seitan')],
-				Ingredient(name='turkey'): [Ingredient(name='tofurkey')],
-				Ingredient(name='beef'): [Ingredient(name='tofu'), Ingredient(name='seitan')],
-				Ingredient(name='fish'): [Ingredient(name='tofu')],
-				Ingredient(name='chorizo'): [Ingredient(name='beans')]
-				}
+meat_subs = { Ingredient(name='hamburger', category="protein", subcategory="meat"): [Ingredient(name='veggie burger', category="protein", subcategory="veg_protein"), Ingredient(name='black bean burger', category="protein", subcategory="veg_protein")],
+				Ingredient(name='meatball', category="protein", subcategory="meat"): [Ingredient(name='veggie meatballs', category="protein", subcategory="veg_protein")],
+				Ingredient(name='hot dog', category="protein", subcategory="meat"): [Ingredient(name='veggie dog', category="protein", subcategory="veg_protein")],
+				Ingredient(name='sausage', category="protein", subcategory="meat"): [Ingredient(name='veggie sausage', category="protein", subcategory="veg_protein"), Ingredient(name='tempeh', category="protein", subcategory="veg_protein")],
+				Ingredient(name='chicken', category="protein", subcategory="meat"): [Ingredient(name='chik\'n', category="protein", subcategory="veg_protein"), Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
+				Ingredient(name='default', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name="texturized vegetable protein (TVP)", category="protein", subcategory="veg_protein")],
+				Ingredient(name='pork', category="protein", subcategory="meat"): [Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
+				Ingredient(name='turkey', category="protein", subcategory="meat"): [Ingredient(name='tofurkey', category="protein", subcategory="veg_protein")],
+				Ingredient(name='beef', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
+				Ingredient(name='fish', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein")],
+				Ingredient(name='chorizo', category="protein", subcategory="meat"): [Ingredient(name='beans', category="protein", subcategory="veg_protein")]
+			}
+
+proteins = meats + seafood + veg_proteins + dairy
+
+# REGEX: get before new line (.*)(\n)
+# replace: Ingredient(name="\1", category="healthy", subcategory="vegetable"),\2
+
+vegetables = [Ingredient(name="Alfalfa sprouts", category="healthy", subcategory="vegetable"),
+Ingredient(name="Anise", category="healthy", subcategory="vegetable"),
+Ingredient(name="Artichoke", category="healthy", subcategory="vegetable"),
+Ingredient(name="Arugula", category="healthy", subcategory="vegetable"),
+Ingredient(name="Asparagus", category="healthy", subcategory="vegetable"),
+Ingredient(name="Aubergine", category="healthy", subcategory="vegetable"),
+Ingredient(name="Avocado", category="healthy", subcategory="vegetable"),
+Ingredient(name="Brassicas", category="healthy", subcategory="vegetable"),
+Ingredient(name="Broccoflower", category="healthy", subcategory="vegetable"),
+Ingredient(name="Broccoli", category="healthy", subcategory="vegetable"),
+Ingredient(name="Broccolini", category="healthy", subcategory="vegetable"),
+Ingredient(name="Broccoli rabe", category="healthy", subcategory="vegetable"),
+Ingredient(name="Brussels sprouts", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cabbage", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cauliflower", category="healthy", subcategory="vegetable"),
+Ingredient(name="Romanesco broccoli", category="healthy", subcategory="vegetable"),
+Ingredient(name="Yu choy", category="healthy", subcategory="vegetable"),
+Ingredient(name="Choy sum", category="healthy", subcategory="vegetable"),
+Ingredient(name="Bok choy", category="healthy", subcategory="vegetable"),
+Ingredient(name="Nappa cabbage", category="healthy", subcategory="vegetable"),
+Ingredient(name="Collard greens", category="healthy", subcategory="vegetable"),
+Ingredient(name="Kohlrabi", category="healthy", subcategory="vegetable"),
+Ingredient(name="Breadfruit", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cactus pad", category="healthy", subcategory="vegetable"),
+Ingredient(name="Calabrese", category="healthy", subcategory="vegetable"),
+Ingredient(name="Celery", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chard", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chicory", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cucumber", category="healthy", subcategory="vegetable"),
+Ingredient(name="Eggplant", category="healthy", subcategory="vegetable"),
+Ingredient(name="Endive", category="healthy", subcategory="vegetable"),
+Ingredient(name="Edible cactus", category="healthy", subcategory="vegetable"),
+Ingredient(name="Fennel", category="healthy", subcategory="vegetable"),
+Ingredient(name="Fiddlehead", category="healthy", subcategory="vegetable"),
+Ingredient(name="Frisee", category="healthy", subcategory="vegetable"),
+Ingredient(name="Hop shoot", category="healthy", subcategory="vegetable"),
+Ingredient(name="Kale", category="healthy", subcategory="vegetable"),
+Ingredient(name="Kangkung", category="healthy", subcategory="vegetable"),
+Ingredient(name="Soybeans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Garlic", category="healthy", subcategory="vegetable"),
+Ingredient(name="Winter leeks", category="healthy", subcategory="vegetable"),
+Ingredient(name="Legume", category="healthy", subcategory="vegetable"),
+Ingredient(name="Azuki bean", category="healthy", subcategory="vegetable"),
+Ingredient(name="Beansprouts", category="healthy", subcategory="vegetable"),
+Ingredient(name="Black beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Black-eyed peas", category="healthy", subcategory="vegetable"),
+Ingredient(name="Borlotti beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Broad beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chickpea", category="healthy", subcategory="vegetable"),
+Ingredient(name="Green beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Red kidney bean", category="healthy", subcategory="vegetable"),
+Ingredient(name="Lentils", category="healthy", subcategory="vegetable"),
+Ingredient(name="Lima beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Mung beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Navy beans", category="healthy", subcategory="vegetable"),
+Ingredient(name="Runner bean", category="healthy", subcategory="vegetable"),
+Ingredient(name="Soybean", category="healthy", subcategory="vegetable"),
+Ingredient(name="Pea", category="healthy", subcategory="vegetable"),
+Ingredient(name="Mangetout", category="healthy", subcategory="vegetable"),
+Ingredient(name="Snap pea", category="healthy", subcategory="vegetable"),
+Ingredient(name="Lemongrass", category="healthy", subcategory="vegetable"),
+Ingredient(name="Lettuce Lactuca sativa", category="healthy", subcategory="vegetable"),
+Ingredient(name="Corn", category="healthy", subcategory="vegetable"),
+Ingredient(name="Mangetout", category="healthy", subcategory="vegetable"),
+Ingredient(name="Mustard green", category="healthy", subcategory="vegetable"),
+Ingredient(name="Nettles", category="healthy", subcategory="vegetable"),
+Ingredient(name="New Zealand spinach", category="healthy", subcategory="vegetable"),
+Ingredient(name="Nori", category="healthy", subcategory="vegetable"),
+Ingredient(name="Okra", category="healthy", subcategory="vegetable"),
+Ingredient(name="Onion family", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chives", category="healthy", subcategory="vegetable"),
+Ingredient(name="Garlic", category="healthy", subcategory="vegetable"),
+Ingredient(name="Onion", category="healthy", subcategory="vegetable"),
+Ingredient(name="Shallot", category="healthy", subcategory="vegetable"),
+Ingredient(name="scallion ", category="healthy", subcategory="vegetable"),
+Ingredient(name="shallot", category="healthy", subcategory="vegetable"),
+Ingredient(name="Parsley", category="healthy", subcategory="vegetable"),
+Ingredient(name="Daikon", category="healthy", subcategory="vegetable"),
+Ingredient(name="Potatoes", category="healthy", subcategory="vegetable"),
+Ingredient(name="Pepper", category="healthy", subcategory="vegetable"),
+Ingredient(name="Bell pepper", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chili pepper", category="healthy", subcategory="vegetable"),
+Ingredient(name="Radicchio", category="healthy", subcategory="vegetable"),
+Ingredient(name="Rhubarb", category="healthy", subcategory="vegetable"),
+Ingredient(name="Root vegetables", category="healthy", subcategory="vegetable"),
+Ingredient(name="Beet", category="healthy", subcategory="vegetable"),
+Ingredient(name="Carrot", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cassava", category="healthy", subcategory="vegetable"),
+Ingredient(name="Celeriac", category="healthy", subcategory="vegetable"),
+Ingredient(name="Daikon", category="healthy", subcategory="vegetable"),
+Ingredient(name="Ginger", category="healthy", subcategory="vegetable"),
+Ingredient(name="Sunchoke ", category="healthy", subcategory="vegetable"),
+Ingredient(name="Jicama", category="healthy", subcategory="vegetable"),
+Ingredient(name="Parsnip", category="healthy", subcategory="vegetable"),
+Ingredient(name="Potato", category="healthy", subcategory="vegetable"),
+Ingredient(name="Radish", category="healthy", subcategory="vegetable"),
+Ingredient(name="Skirret", category="healthy", subcategory="vegetable"),
+Ingredient(name="Rutabaga ", category="healthy", subcategory="vegetable"),
+Ingredient(name="Sweet potato ", category="healthy", subcategory="vegetable"),
+Ingredient(name="Taro root", category="healthy", subcategory="vegetable"),
+Ingredient(name="Turnip", category="healthy", subcategory="vegetable"),
+Ingredient(name="Wasabi", category="healthy", subcategory="vegetable"),
+Ingredient(name="Water chestnut", category="healthy", subcategory="vegetable"),
+Ingredient(name="White radish", category="healthy", subcategory="vegetable"),
+Ingredient(name="Yam", category="healthy", subcategory="vegetable"),
+Ingredient(name="Samphire", category="healthy", subcategory="vegetable"),
+Ingredient(name="Silverbeet", category="healthy", subcategory="vegetable"),
+Ingredient(name="Snap pea", category="healthy", subcategory="vegetable"),
+Ingredient(name="Spinach", category="healthy", subcategory="vegetable"),
+Ingredient(name="Squash family", category="healthy", subcategory="vegetable"),
+Ingredient(name="Acorn squash", category="healthy", subcategory="vegetable"),
+Ingredient(name="Bitter melon", category="healthy", subcategory="vegetable"),
+Ingredient(name="Butternut squash", category="healthy", subcategory="vegetable"),
+Ingredient(name="Calabaza", category="healthy", subcategory="vegetable"),
+Ingredient(name="Chayote", category="healthy", subcategory="vegetable"),
+Ingredient(name="Cucumber", category="healthy", subcategory="vegetable"),
+Ingredient(name="Gem squash", category="healthy", subcategory="vegetable"),
+Ingredient(name="Patty pan squash", category="healthy", subcategory="vegetable"),
+Ingredient(name="Pumpkin", category="healthy", subcategory="vegetable"),
+Ingredient(name="Spaghetti squash", category="healthy", subcategory="vegetable"),
+Ingredient(name="Zucchini", category="healthy", subcategory="vegetable"),
+Ingredient(name="Tomato", category="healthy", subcategory="vegetable"),
+Ingredient(name="Tat soi", category="healthy", subcategory="vegetable"),
+Ingredient(name="Tomatillo", category="healthy", subcategory="vegetable"),
+Ingredient(name="Tomato", category="healthy", subcategory="vegetable"),
+Ingredient(name="Watercress", category="healthy", subcategory="vegetable")]
 
 
 tools = ["baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet",
