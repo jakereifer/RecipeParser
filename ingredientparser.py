@@ -89,6 +89,7 @@ def parseIngredient(i):
 		ingredient.quantity = parse_amount(left_side.split('(')[0].strip())
 		ingredient.measurement = '('+ left_side.split('(')[1].strip() + " " + ingredient.measurement
 	else:
+		# print(left_side)
 		ingredient.quantity = parse_amount(left_side.strip())
 	#look at the right side
 	right_side = right_side.strip()
@@ -123,7 +124,8 @@ def parseIngredient(i):
 
 # parse the amount needed in decimal
 def parse_amount(amount_string):
-
+	if not amount_string:
+		return ""
 	if "/" in amount_string:
 		divisor = float(amount_string[0:amount_string.find("/")])
 		dividend = float(amount_string[amount_string.find("/")+1:])
