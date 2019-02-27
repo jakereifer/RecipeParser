@@ -1,6 +1,7 @@
 import knowledgebase
 from helpers import *
 
+
 # parses the ingredient (no descriptor yet) (works for most types)
 def parseIngredient(i):
 	# words of the ingredient
@@ -15,6 +16,18 @@ def parseIngredient(i):
 			ingredient.quantity = parse_amount(i_words[0])
 			ingredient.name = i_words[1]
 			ingredient.measurement = "count"
+
+		for category, lst in knowledgebase.categories.items():
+			# print(category, lst)
+			for ingr in lst:
+				# print(ingr.name)
+				# print(ingredient.name)
+				if ingr.name in ingredient.name:
+					print(ingredient.name)
+					print(ingr.name in ingredient.name)
+					if category not in ingredient.tags:
+						ingredient.tags.append(category)
+					print(ingredient.tags)
 		return ingredient
 	name = 0
 	prep_dividers = [",", " - "]
@@ -26,6 +39,18 @@ def parseIngredient(i):
 		# print(ingredient.quantity)
 	else:
 		ingredient.name = i.strip()
+
+		for category, lst in knowledgebase.categories.items():
+			# print(category, lst)
+			for ingr in lst:
+				# print(ingr.name)
+				# print(ingredient.name)
+				if ingr.name in ingredient.name:
+					print(ingredient.name)
+					print(ingr.name in ingredient.name)
+					if category not in ingredient.tags:
+						ingredient.tags.append(category)
+					print(ingredient.tags)
 		return ingredient
 	# if there is an open parenthesis
 	if i_words[1][0] == "(":
@@ -50,6 +75,19 @@ def parseIngredient(i):
 			ingredient.preparation = ingredient.name.split(pd)[1].strip()
 			ingredient.name = ingredient.name.split(pd)[0].strip()
 	# trim whitespace
+
+
+	for category, lst in knowledgebase.categories.items():
+		# print(category, lst)
+		for ingr in lst:
+			# print(ingr.name)
+			# print(ingredient.name)
+			if ingr.name in ingredient.name:
+				print(ingredient.name)
+				print(ingr.name in ingredient.name)
+				if category not in ingredient.tags:
+					ingredient.tags.append(category)
+				print(ingredient.tags)
 	return ingredient
 
 
@@ -80,6 +118,8 @@ def printIngredient(i):
 		print("Descriptor: ", i.descriptor)
 	if i.preparation:
 		print("Preparation: ", i.preparation)
+	if i.tags:
+		print("Tags: ", i.tags)
 
 	
 
