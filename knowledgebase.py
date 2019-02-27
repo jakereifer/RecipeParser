@@ -1,5 +1,6 @@
 import pandas as pd
 # import measurements
+from helpers import Ingredient
 
 class Unit(object):
 	name = ''
@@ -30,48 +31,54 @@ measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
 				}
 
 # not case sensitive
-meats = ["Bacon", "Beef", "Bison", "Blood", "Chicken",
-		 "Cooking Chicken","Chorizo", "Cornish Game Hen",
-		 "Duck", "Foie Gras", "Game", "Giblets", "Goat",
-		 "Goose", "Guinea Pig", "Ham", "Hedgehog", "Horse",
-		 "Hot Dog", "Kidney", "Kielbasa", "Lamb", "Liver",
-		 "Mortadella", "Mutton", "Neck Sweetbread", "Organ Meat",
-		 "Ostrich", "Pancetta", "Pastrami", "Pepperoni", "Pork",
-		 "Prosciutto", "Quail", "Rabbit", "Salami", "Sausage",
-		 "Sausage Casing", "Squirrel", "Stomach Sweetbread",
-		 "Sweetbread", "Tongue", "Tripe", "Turkey", "Veal", "Venison", "Burger", "Meatballs"]
+meats = [ Ingredient(name="bacon"), Ingredient(name="beef"), Ingredient(name="bison"), Ingredient(name="blood"), Ingredient(name="chicken"),Ingredient(name="chorizo"), Ingredient(name="cornish game hen"),
+			Ingredient(name="duck"), Ingredient(name="foie gras"), Ingredient(name="game"), Ingredient(name="giblets"), Ingredient(name="goat"),
+			Ingredient(name="goose"), Ingredient(name="guinea pig"), Ingredient(name="ham"), Ingredient(name="hedgehog"), Ingredient(name="horse"),
+			Ingredient(name="hot dog"), Ingredient(name="kidney"), Ingredient(name="kielbasa"), Ingredient(name="lamb"), Ingredient(name="liver"),
+			Ingredient(name="mortadella"), Ingredient(name="mutton"), Ingredient(name="neck sweetbread"), Ingredient(name="organ meat"),
+			Ingredient(name="ostrich"), Ingredient(name="pancetta"), Ingredient(name="pastrami"), Ingredient(name="pepperoni"), Ingredient(name="pork"),
+			Ingredient(name="prosciutto"), Ingredient(name="quail"), Ingredient(name="rabbit"), Ingredient(name="salami"), Ingredient(name="sausage"),
+			Ingredient(name="sausage casing"), Ingredient(name="squirrel"), Ingredient(name="stomach sweetbread"),
+			Ingredient(name="sweetbread"), Ingredient(name="tongue"), Ingredient(name="tripe"), Ingredient(name="turkey"), Ingredient(name="veal"), Ingredient(name="venison"), Ingredient(name="burger"), Ingredient(name="meatballs")]
 
 # not case sensitive
-seafood= ["Salmon", "Cod", "Halibut", "Mahi mahi", "Tuna", "Shark",
-			"Swordfish", "Sturgeon", "Catfish", "Trout", "Sardine", 
-			"Anchovy", "Arctic char", "Crab", "Crayfish", "Lobster", 
-			"Shrimp", "Molluscs", "Abalone", "Clam", "Cockle", "Mussel",
-			"Octopus", "Oyster", "Pipi", "Snail", "Conch", "Whelk",
-			"Winkle", "Squid", "Calamari", "Scallop", "Caviar", "Uni",
-			"Sea Cucumber", "Hagfish", "Tuna", "Ikura"]
+seafood= [ Ingredient(name="salmon"), Ingredient(name="cod"), Ingredient(name="halibut"), Ingredient(name="mahi mahi"), Ingredient(name="tuna"), Ingredient(name="shark"),
+			Ingredient(name="swordfish"), Ingredient(name="sturgeon"), Ingredient(name="catfish"), Ingredient(name="trout"), Ingredient(name="sardine"), 
+			Ingredient(name="anchovy"), Ingredient(name="arctic char"), Ingredient(name="crab"), Ingredient(name="crayfish"), Ingredient(name="lobster"), 
+			Ingredient(name="shrimp"), Ingredient(name="molluscs"), Ingredient(name="abalone"), Ingredient(name="clam"), Ingredient(name="cockle"), Ingredient(name="mussel"),
+			Ingredient(name="octopus"), Ingredient(name="oyster"), Ingredient(name="pipi"), Ingredient(name="snail"), Ingredient(name="conch"), Ingredient(name="whelk"),
+			Ingredient(name="winkle"), Ingredient(name="squid"), Ingredient(name="calamari"), Ingredient(name="scallop"), Ingredient(name="caviar"), Ingredient(name="uni"),
+			Ingredient(name="sea cucumber"), Ingredient(name="hagfish"), Ingredient(name="tuna"), Ingredient(name="ikura")]
 
 #veg_proteins
-veg_proteins = ['tofu', 'tempeh', 'seitan', 'jackfruit', 'lentils', 'beans',
-				'legumes', 'texturized vegetable protein',#tvp
-				'chickpeas', 'falafel', 'nuts', 'soy', 'vegetarian bacon', 'veggie burger'
-				'tofurkey', 'vegetarian hot dog', 'quinoa']
+veg_proteins = [ Ingredient(name='tofu'), Ingredient(name='tempeh'), Ingredient(name='seitan'), Ingredient(name='jackfruit'), Ingredient(name='lentils'), Ingredient(name='beans'),
+				Ingredient(name='legumes'), Ingredient(name='texturized vegetable protein (TVP)'),#tvp
+				Ingredient(name='chickpeas'), Ingredient(name='falafel'), Ingredient(name='nuts'), Ingredient(name='soy'), Ingredient(name='vegetarian bacon'), Ingredient(name='veggie burger'),
+				Ingredient(name='tofurkey'), Ingredient(name='veggie dog dog'), Ingredient(name='quinoa')]
 
-meat_subs = {'burger': ['veggie burger', 'black bean burger'],
-			'meatball': [],
-			'hot dog': [],
-			'sausage': [],
-			'chicken': []}
+meat_subs = { Ingredient(name='hamburger'): [Ingredient(name='veggie burger'), Ingredient(name='black bean burger')],
+				Ingredient(name='meatball'): [Ingredient(name='veggie meatballs')],
+				Ingredient(name='hot dog'): [Ingredient(name='veggie dog')],
+				Ingredient(name='sausage'): [Ingredient(name='veggie sausage'), Ingredient(name='tempeh')],
+				Ingredient(name='chicken'): [Ingredient(name='chick\'n'), Ingredient(name='tofu'), Ingredient(name='seitan')],
+				Ingredient(name='default'): [Ingredient(name='tofu'), Ingredient(name="texturized vegetable protein (TVP)")],
+				Ingredient(name='pork'): [Ingredient(name='seitan')],
+				Ingredient(name='turkey'): [Ingredient(name='tofurkey')],
+				Ingredient(name='beef'): [Ingredient(name='tofu'), Ingredient(name='seitan')],
+				Ingredient(name='fish'): [Ingredient(name='tofu')],
+				Ingredient(name='chorizo'): [Ingredient(name='beans')]
+				}
 
 
-tools = ["baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet","colander","cutting board","double boiler","dutch oven","foil","food processer ","fork","frying pan","funnel","garlic press","grill","hand mixer","knife","ladel","mandoline","measuring cup","microplane", "mortar","paper towel","parchment paper","paring knife","peeler","pesltle","plastic wrap","plate","pot","rack",'ramekin',"roasting pan","rolling pin","saucepan","sheet pan","sieve","skewer","skillet","smoker","spatula","spoon","stand mixer","stock pot","thermometer","timer","tongs","twine","whisk"]
+tools = ["refrigerator","container", "baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet","colander","cutting board","double boiler", "oven", "foil","food processer ","fork","frying pan","funnel","garlic press","grill","hand mixer","knife","ladel","mandoline","measuring cup","microplane","mortar","paper towel","parchment paper","paring knife","peeler","pesltle","plastic wrap","plate","pot","rack",'ramekin',"roasting pan","rolling pin","saucepan","sheet pan","sieve","skewer","skillet","smoker","spatula","spoon","stand mixer","stock pot","thermometer","timer","tongs","twine","whisk", "sifter", "strainer", "mallet"]
 
-primary_methods = ["bake","barbeque","boil","broil","braise","carmelize","flambe","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer","stir fry","stew","sweat","toast"]
+primary_methods = ["cook","bake","serve","barbeque","boil","broil","braise","carmelize","flambe","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer","stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray"]
 
-secondary_methods = ["arange","add","heat","brown","beat","blache","heat","cover","chop","combine","crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk"]
+secondary_methods = ["refrigerate","remove", "lift", "arange","add","heat","brown","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
 
-units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon","milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
+units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
-preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced"]
+preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
 
 """
 method_tools = {
@@ -97,5 +104,6 @@ method_tools = {
 	"stew": "pot",
 	"sweat": "pan",
 	"toast": "toaster",
+
 }
 """

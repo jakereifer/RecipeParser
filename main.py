@@ -3,6 +3,7 @@ import requests
 import ingredientparser
 import re
 import stepparsery
+import jakeparser
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")
@@ -34,6 +35,9 @@ for i in range(0, number_of_steps):
 # 	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
 # 	print("")
 
+final_steps=jakeparser.separateIntermediateSteps(scraped_steps)
+# print("fs: ", final_steps)
+scraped_steps=final_steps
 
 class Step(object):
 	def __init__(self):
@@ -67,7 +71,6 @@ scraped_steps = temp
 
 stepsDic= {}
 
-print('Ingredients: ', ingredientNames)
 
 for step in scraped_steps:
 	if step == "":
@@ -80,6 +83,9 @@ for step in scraped_steps:
 
 	# find times
 	stepsDic[step].time = stepparsery.findTimes(step)
+	stepsDic[step].methods = stepparsery.findMethods(step)
+	stepsDic[step].tools = stepparsery.findTools(step)
+
 
 
 stepparsery.printStepInfo(stepsDic)
