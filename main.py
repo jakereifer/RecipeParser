@@ -5,14 +5,21 @@ import knowledgebase
 from helpers import *
 
 
+
 # test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
 # https://www.allrecipes.com/recipe/10552/giant-chocolate-chip-cookie/?internalSource=hub%20recipe&referringContentType=Search
 # with parens: https://www.allrecipes.com/recipe/8350/chantals-new-york-cheesecake/?internalSource=hub%20recipe&referringId=79&referringContentType=Recipe%20Hub&clickId=cardslot%2015
 
-recipe = Recipe()
+
 
 # Prompt for URL
-page_link = input("Please enter a recipe URL: ")
+recipe = Recipe()
+page_link = validatePageLink()
+
+
+transform_input = validateTransform()
+transformation = transformations[int(transform_input)]
+print(transformation)
 page_response = requests.get(page_link, timeout=5)
 page_content = BeautifulSoup(page_response.content, "html.parser")
 
