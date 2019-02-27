@@ -3,6 +3,7 @@ import requests
 import ingredientparser
 import knowledgebase
 import helpers
+import jakeparser
 
 # test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
 # https://www.allrecipes.com/recipe/10552/giant-chocolate-chip-cookie/?internalSource=hub%20recipe&referringContentType=Search
@@ -39,7 +40,8 @@ for i in scraped_ingredients:
 	print("")
 
 # find tools and methods
-
+final_steps = jakeparser.separateIntermediateSteps(scraped_steps)
+print(final_steps)
 
 #parse the steps
 #separate sentences
