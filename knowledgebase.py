@@ -72,7 +72,7 @@ tools = ["baking sheet","blender","bowl","box grater","brush","can opener","cast
 
 primary_methods = ["bake","barbeque","boil","broil","braise","carmelize","flambe","fry","grill",
 					"parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer",
-					"stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper"]
+					"stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify"]
 
 secondary_methods = ["arange","add","heat","brown","beat","blache","heat","cover","chop","combine",
 					"crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix",
@@ -87,7 +87,7 @@ units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gal
 		"loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
 preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed",
-				"peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved"]
+				"peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
 
 """
 method_tools = {
