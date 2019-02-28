@@ -1,9 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import ingredientparser
-import re
 import stepparsery
-import jakeparser
+import knowledgebase
 
 # Prompt for URL
 page_link = input("Please enter a recipe URL: ")
@@ -30,67 +29,44 @@ for i in range(0, number_of_steps):
     step_string = page_content.find_all("span", {"class": "recipe-directions__list--item"})[i].text
     scraped_steps.append(step_string.strip())
 
-# #Print parsed ingredients
-# for i in scraped_ingredients:
-# 	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
-# 	print("")
-
-final_steps=jakeparser.separateIntermediateSteps(scraped_steps)
-# print("fs: ", final_steps)
-scraped_steps=final_steps
-
-class Step(object):
-	def __init__(self):
-		self.text = ""
-		self.ingList = []
-		self.time = ""
-		self.methods = []
-		self.tools = []
-
-# Step Parsing
-
-commonIngredients = ['water']
-
-ingredientNames = []
+#Print parsed ingredients
+print("INGREDIENTS")
+print("           ")
 for i in scraped_ingredients:
-	parsed = ingredientparser.parseIngredient(i)
-	ingredientNames.append(parsed.name)
+	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
+	print("")
 
-# update this!
-for i in commonIngredients:
-	if not i in ingredientNames:
-		ingredientNames.append(i)
-
-# seperate scraped_steps by period
-# seperate by semicolon also!
-temp = []
-for step in scraped_steps:
-	temp = temp + step.split('.')
-
-scraped_steps = temp
-
-stepsDic= {}
+print("STEPS")
+print("           ")
+stepsList = stepparsery.parseSteps(scraped_steps, scraped_ingredients)
+stepparsery.printStepInfo(stepsList)
 
 
-for step in scraped_steps:
-	if step == "":
-		continue
-	step = re.sub(r'[^\w\s]','',step)
-	stepsDic[step] = Step()
+# get list of Tools, Methods (primary and secondary)
+scraped_tools = []
+scraped_primary_methods = []
+scraped_secondary_methods = []
+for s in stepsList:
+	scraped_tools = scraped_tools + s.tools
+	for m in s.methods:
+		for p in knowledgebase.primary_methods:
+			if m == p:
+				scraped_primary_methods.append(m)
+		for s in knowledgebase.secondary_methods:
+			if m == s:
+				scraped_secondary_methods.append(m)
 
-	# Find ingredients
-	stepsDic[step].ingList = stepparsery.findIngredients(step, ingredientNames)
-
-	# find times
-	stepsDic[step].time = stepparsery.findTimes(step)
-	stepsDic[step].methods = stepparsery.findMethods(step)
-	stepsDic[step].tools = stepparsery.findTools(step)
-
-
-
-stepparsery.printStepInfo(stepsDic)
-
-			
+print ("ALL FOUND TOOLS")
+print("           ")
+print(scraped_tools)
+print("             ")
+print ("ALL FOUND PRIMARY METHODS")
+print("           ")
+print(scraped_primary_methods)
+print("           ")
+print ("ALL SECONDARY METHODS")
+print("           ")
+print(scraped_secondary_methods)
 
 
 
