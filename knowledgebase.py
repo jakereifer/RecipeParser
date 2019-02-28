@@ -71,7 +71,7 @@ secondary_methods = ["arange","add","heat","brown","beat","blache","heat","cover
 
 units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon","milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
-preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced"]
+preparations = ["clarified","chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced"]
 
 """
 method_tools = {
