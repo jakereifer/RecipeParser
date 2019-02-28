@@ -36,14 +36,15 @@ class Ingredient(object):
 	measurement = ""
 	descriptor = ""
 	preparation = ""
+	tags = []
 
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
+	def __init__(self, name="", quantity=0, measurement="", desc="", prep="", tags=[]):
 		self.name = name
 		self.quantity = quantity,
 		self.measurement = measurement
 		self.descriptor = desc
 		self.preparation = prep
-
+		self.tags = tags
 
 transformations = { 0: "NONE",
 					1: "TO_VEGETARIAN",
@@ -68,11 +69,13 @@ def validateTransform(err=False):
 	for k, v in transformations.items():
 	     print("%d\t%s" % (k, v))
 	inp = input("Please enter the number corresponding to the transformation you'd like to perform:\t")
-	transf = int(inp) if int(inp) in transformations.keys() else (validateTransform(True))
+	try:
+		transf = int(inp) if int(inp) in transformations.keys() else (validateTransform(True))
+	except:
+		transf = validateTransform(True) 
 	return transf
 
 def contains_word(s, w):
 	s = s.lower()
 	w = w.lower()
 	return (' ' + w + ' ') in (' ' + s + ' ')
-

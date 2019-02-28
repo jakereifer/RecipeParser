@@ -1,49 +1,28 @@
 import knowledgebase
-<<<<<<< HEAD
-
-class Ingredient(object):
-	name = ""
-	quantity = 0
-	measurement = ""
-	descriptor = ""
-	preparation = ""
-=======
 from helpers import *
->>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
-		self.name = name
-		self.quantity = quantity
-		self.measurement = measurement
-		self.descriptor = desc
-		self.preparation = prep
-
-# parses the ingredient (no descriptor yet) (works for most types)
 def parseIngredient(i):
 	# words of the ingredient
 	i_words = i.split()
 	ingredient = Ingredient()
 	if len(i_words) == 1:
 		ingredient.name = i_words[0]
+		ingredient.tags = ingredientTags(ingredient)
 		return ingredient
 	# 2 eggs	
 	if len(i_words) == 2:
-<<<<<<< HEAD
 		if i_words[0][0].isnumeric():
-			ingredient.quantity = i_words[0]
-=======
-		if i_words[0].isnumeric():
 			ingredient.quantity = parse_amount(i_words[0])
->>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 			ingredient.name = i_words[1]
 			ingredient.measurement = "count"
 		else:
 			ingredient.name = " ".join(i_words)
+
+		ingredient.tags = ingredientTags(ingredient)
 		return ingredient
 	
 	name = 0
 	prep_dividers = [",", " - "]
-<<<<<<< HEAD
 	prep_words = knowledgebase.preparations
 	unit_words = knowledgebase.units
 	two_word_units = ["fluid ounce", "fl oz"]
@@ -87,30 +66,6 @@ def parseIngredient(i):
 			ingredient.name = " ".join(i_words)
 			left_side = ""
 			right_side = ingredient.name
-=======
-	# last word index
-	end = len(i_words)-1
-	# Get the quantityquantity
-	if i[0].isnumeric():
-		ingredient.quantity = parse_amount(i_words[0])
-		# print(ingredient.quantity)
-	else:
-		ingredient.name = i.strip()
-		return ingredient
-	# if there is an open parenthesis
-	if i_words[1][0] == "(":
-		for i in range(1,len(i_words)):
-			if i_words[i][len(i_words[i])-1] == ")":
-				ingredient.measurement = " ".join(i_words[1:i+2]).strip()
-				name = i + 2
-				break
-		ingredient.name = " ".join(i_words[name:len(i_words)]).strip()
-	else:
-		if i_words[1][0].isnumeric() and len(i_words) > 3:
-			ingredient.quantity = float(i_words[0]) + parse_amount(i_words[1])
-			ingredient.measurement = i_words[2]
-			ingredient.name = " ".join(i_words[3:len(i_words)]).strip()
->>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 		else:
 			for i in range(1,len(i_words)):
 				if not i_words[i][0].isnumeric():
@@ -120,10 +75,11 @@ def parseIngredient(i):
 	#look at the left side
 	left_side = left_side.strip()
 	if '(' in left_side:
-		ingredient.quantity = left_side.split('(')[0].strip()
+		ingredient.quantity = parse_amount(left_side.split('(')[0].strip())
 		ingredient.measurement = '('+ left_side.split('(')[1].strip() + " " + ingredient.measurement
 	else:
-		ingredient.quantity = left_side.strip()
+		# print(left_side)
+		ingredient.quantity = parse_amount(left_side.strip())
 	#look at the right side
 	right_side = right_side.strip()
 	#look if there is preparation steps
@@ -144,6 +100,7 @@ def parseIngredient(i):
 					ingredient.name = " ".join(rs_words[i+1:])
 				else:
 					ingredient.name = rightside
+					ingredient.tags = ingredientTags(ingredient)
 					return ingredient
 				if not ingredient.preparation == "":
 					ingredient.preparation = ingredient.preparation + ", " + " ".join(rs_words[:i+1])
@@ -152,24 +109,23 @@ def parseIngredient(i):
 				break
 	if not found_prep:
 		ingredient.name = right_side
+	ingredient.tags = ingredientTags(ingredient)
 	return ingredient
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 # parse the amount needed in decimal
 def parse_amount(amount_string):
+	if not amount_string:
+		return 0
 
+	x = float(amount_string[0:amount_string.find(" ")] if " " in amount_string else 0)
+	frac = amount_string[amount_string.find(" ")+1:] if x != 0 else amount_string
 	if "/" in amount_string:
-		divisor = float(amount_string[0:amount_string.find("/")])
-		dividend = float(amount_string[amount_string.find("/")+1:])
-		amt = divisor/dividend
+		divisor = float(frac[0:frac.find("/")])
+		dividend = float(frac[frac.find("/")+1:])
+		amt = x + (divisor/dividend)
 	else:
 		amt = float(amount_string)
-
 
 	return amt
 
@@ -185,12 +141,22 @@ def printIngredient(i):
 		print("Descriptor: ", i.descriptor)
 	if i.preparation:
 		print("Preparation: ", i.preparation)
+	if i.tags:
+		print("Tags: ", i.tags)
 
-<<<<<<< HEAD
-# x = "2 cloves garlic, minced"
-# printIngredient(parseIngredient(x))
-=======
 	
+def ingredientTags(i):
+	tags = []
+	for category, lst in knowledgebase.categories.items():
+		for ingr in lst:
+			if contains_word(i.name, ingr.name):
+				print(ingr.name, i.name)
+				print(ingr.name in i.name)
+				if category not in tags:
+					tags.append(category)
+			elif i.name[-1] == 's':
+				if contains_word(i.name, ingr.name+'s'):
+					if category not in tags:
+						tags.append(category)
+	return tags
 
-
->>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13

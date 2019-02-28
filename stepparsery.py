@@ -49,12 +49,10 @@ def cleanIngredients(scraped_ingredients):
 	for i in scraped_ingredients:
 		parsed = ingredientparser.parseIngredient(i)
 		ingredientNames.append(parsed.name)
-	return ingredientNames
-
 	for i in commonIngredients:
 		if not i in ingredientNames:
 			ingredientNames.append(i)
-		return ingredientList
+	return ingredientNames
 
 
 def findTimes(step):
