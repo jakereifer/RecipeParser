@@ -159,5 +159,6 @@ def ingredientTags(i):
 				if contains_word(i.name, ingr.name+'s'):
 					if category not in tags:
 						tags.append(category)
+	print(tags)
 	return tags
 
