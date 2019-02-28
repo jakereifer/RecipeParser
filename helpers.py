@@ -75,3 +75,4 @@ def contains_word(s, w):
 	s = s.lower()
 	w = w.lower()
 	return (' ' + w + ' ') in (' ' + s + ' ')
+

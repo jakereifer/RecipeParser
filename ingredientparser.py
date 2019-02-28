@@ -1,4 +1,5 @@
 import knowledgebase
+<<<<<<< HEAD
 
 class Ingredient(object):
 	name = ""
@@ -6,6 +7,9 @@ class Ingredient(object):
 	measurement = ""
 	descriptor = ""
 	preparation = ""
+=======
+from helpers import *
+>>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 
 	def __init__(self, name="", quantity=0, measurement="", desc="", prep=""):
 		self.name = name
@@ -24,8 +28,13 @@ def parseIngredient(i):
 		return ingredient
 	# 2 eggs	
 	if len(i_words) == 2:
+<<<<<<< HEAD
 		if i_words[0][0].isnumeric():
 			ingredient.quantity = i_words[0]
+=======
+		if i_words[0].isnumeric():
+			ingredient.quantity = parse_amount(i_words[0])
+>>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 			ingredient.name = i_words[1]
 			ingredient.measurement = "count"
 		else:
@@ -34,6 +43,7 @@ def parseIngredient(i):
 	
 	name = 0
 	prep_dividers = [",", " - "]
+<<<<<<< HEAD
 	prep_words = knowledgebase.preparations
 	unit_words = knowledgebase.units
 	two_word_units = ["fluid ounce", "fl oz"]
@@ -77,6 +87,30 @@ def parseIngredient(i):
 			ingredient.name = " ".join(i_words)
 			left_side = ""
 			right_side = ingredient.name
+=======
+	# last word index
+	end = len(i_words)-1
+	# Get the quantityquantity
+	if i[0].isnumeric():
+		ingredient.quantity = parse_amount(i_words[0])
+		# print(ingredient.quantity)
+	else:
+		ingredient.name = i.strip()
+		return ingredient
+	# if there is an open parenthesis
+	if i_words[1][0] == "(":
+		for i in range(1,len(i_words)):
+			if i_words[i][len(i_words[i])-1] == ")":
+				ingredient.measurement = " ".join(i_words[1:i+2]).strip()
+				name = i + 2
+				break
+		ingredient.name = " ".join(i_words[name:len(i_words)]).strip()
+	else:
+		if i_words[1][0].isnumeric() and len(i_words) > 3:
+			ingredient.quantity = float(i_words[0]) + parse_amount(i_words[1])
+			ingredient.measurement = i_words[2]
+			ingredient.name = " ".join(i_words[3:len(i_words)]).strip()
+>>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 		else:
 			for i in range(1,len(i_words)):
 				if not i_words[i][0].isnumeric():
@@ -121,6 +155,11 @@ def parseIngredient(i):
 	return ingredient
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
 # parse the amount needed in decimal
 def parse_amount(amount_string):
 
@@ -147,5 +186,11 @@ def printIngredient(i):
 	if i.preparation:
 		print("Preparation: ", i.preparation)
 
+<<<<<<< HEAD
 # x = "2 cloves garlic, minced"
 # printIngredient(parseIngredient(x))
+=======
+	
+
+
+>>>>>>> 13945bca90c7de4cdf0a6ce1d214433908803e13
