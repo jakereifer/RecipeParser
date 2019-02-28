@@ -52,12 +52,12 @@ scraped_steps = []
 number_of_steps = len(page_content.find_all("span", {"class": "recipe-directions__list--item"}))
 for i in range(0, number_of_steps):
     step_string = page_content.find_all("span", {"class": "recipe-directions__list--item"})[i].text
-    recipe.steps.append(step_string.strip())
+    scraped_steps.append(step_string.strip())
 
-
+scraped_ingredients = [i.text.strip() for i in page_content.find_all("span", {"class": "recipe-ingred_txt added"})]
 print("STEPS")
 print("           ")
-stepsList = stepparsery.parseSteps(scraped_steps, recipe.ingredients)
+stepsList = stepparsery.parseSteps(scraped_steps, scraped_ingredients)
 stepparsery.printStepInfo(stepsList)
 
 
