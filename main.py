@@ -4,6 +4,7 @@ import ingredientparser
 import knowledgebase
 import stepparsery
 from helpers import *
+from recipe import *
 
 
 
@@ -39,13 +40,13 @@ print("")
 # Scrape for ingredients
 for ingr in page_content.find_all("span", {"class": "recipe-ingred_txt added"}):
 	recipe.ingredients.append(ingredientparser.parseIngredient(ingr.text.strip()))
+
 #Print parsed ingredients
 print("Ingredients:\n")
 # recipe.ingredients = [ingredientparser.parseIngredient(i) for i in scraped_ingredients]
 for ingr in recipe.ingredients:
 	ingredientparser.printIngredient(ingr)
 	print("")
-
 
 # Scrape for steps
 scraped_steps = []

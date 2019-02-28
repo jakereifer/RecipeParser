@@ -9,27 +9,6 @@ def findWordsInSteps(keywords, strings):
 				keywordsfound.append(keyword.capitalize())
 	return keywordsfound
 
-
-class Recipe(object):
-	name = ""
-	ingredients = []
-	steps = []
-	p_methods = []
-	s_methods = []
-	tools = []
-	tags = []
-
-
-	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], tags=[]):
-		self.name = name
-		self.ingredients = ingredients
-		self.steps = steps
-		self.p_methods = p_methods
-		self.s_methods = s_methods
-		self.tools = tools
-		self.tags = tags
-
-
 class Ingredient(object):
 	name = ""
 	quantity = 0
