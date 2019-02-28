@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from ingredientparser import *
 from IngredientClass import *
-import StepClass
+from StepClass import *
 from helpers import *
 from RecipeClass import *
 import knowledgebase
@@ -28,9 +28,9 @@ page_content = BeautifulSoup(page_response.content, "html.parser")
 
 # Scrape for recipe title
 recipe.name = page_content.find("h1", {"id": "recipe-main-content"}).text
-print("")
-print(recipe.name)
-print("")
+# print("")
+# print(recipe.name)
+# print("")
 
 
 # number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
@@ -43,11 +43,11 @@ for ingr in page_content.find_all("span", {"class": "recipe-ingred_txt added"}):
 	recipe.ingredients.append(parseIngredient(ingr.text.strip()))
 
 #Print parsed ingredients
-print("Ingredients:\n")
-# recipe.ingredients = [IngredientClass.parseIngredient(i) for i in scraped_ingredients]
-for ingr in recipe.ingredients:
-	ingr.printIngredient()
-	print("")
+# print("Ingredients:\n")
+# # recipe.ingredients = [IngredientClass.parseIngredient(i) for i in scraped_ingredients]
+# for ingr in recipe.ingredients:
+# 	ingr.printIngredient()
+# 	print("")
 
 # Scrape for steps
 scraped_steps = []
@@ -57,34 +57,41 @@ for i in range(0, number_of_steps):
     scraped_steps.append(step_string.strip())
 
 scraped_ingredients = [i.text.strip() for i in page_content.find_all("span", {"class": "recipe-ingred_txt added"})]
-print("STEPS")
-print("           ")
-stepsList = StepClass.parseSteps(scraped_steps, scraped_ingredients)
-StepClass.printStepInfo(stepsList)
+# print("STEPS")
+# print("           ")
 
+recipe.steps = parseSteps(scraped_steps, scraped_ingredients)
+
+recipe.tools = list(set([tool for s in recipe.steps for tool in s.tools if tool not in recipe.tools]))
+recipe.p_methods = list(set([method for s in recipe.steps for method in s.methods if method in knowledgebase.primary_methods and method not in recipe.p_methods]))
+recipe.s_methods = list(set([method for s in recipe.steps for method in s.methods if method in knowledgebase.secondary_methods and method not in recipe.s_methods]))
+
+recipe.sortIngredientsIntoCategories() 
 
 # get list of Tools, Methods (primary and secondary)
-scraped_tools = []
-scraped_primary_methods = []
-scraped_secondary_methods = []
-for s in stepsList:
-	scraped_tools = scraped_tools + s.tools
-	for m in s.methods:
-		for p in knowledgebase.primary_methods:
-			if m == p:
-				scraped_primary_methods.append(m)
-		for s in knowledgebase.secondary_methods:
-			if m == s:
-				scraped_secondary_methods.append(m)
+# scraped_tools = []
+# scraped_primary_methods = []
+# scraped_secondary_methods = []
+# for s in stepsList:
+# 	scraped_tools = scraped_tools + s.tools
+# 	for m in s.methods:
+# 		for p in knowledgebase.primary_methods:
+# 			if m == p:
+# 				scraped_primary_methods.append(m)
+# 		for s in knowledgebase.secondary_methods:
+# 			if m == s:
+# 				scraped_secondary_methods.append(m)
 
-print ("ALL FOUND TOOLS")
-print("           ")
-print(scraped_tools)
-print("             ")
-print ("ALL FOUND PRIMARY METHODS")
-print("           ")
-print(scraped_primary_methods)
-print("           ")
-print ("ALL SECONDARY METHODS")
-print("           ")
-print(scraped_secondary_methods)
+# print ("ALL FOUND TOOLS")
+# print("           ")
+# print(recipe.tools)
+# print("             ")
+# print ("ALL FOUND PRIMARY METHODS")
+# print("           ")
+# print(recipe.p_methods)
+# print("           ")
+# print ("ALL SECONDARY METHODS")
+# print("           ")
+# print(recipe.s_methods)
+
+recipe.printRecipe()

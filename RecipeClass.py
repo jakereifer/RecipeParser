@@ -33,22 +33,22 @@ class Recipe(object):
 
 	def printRecipe(self):
 		if self.name:
-			print("Name: ", i.name)
+			print("Name: ", self.name)
 		if self.ingredients:
-			print("INGREDIENTS:")
+			print("\nINGREDIENTS:")
 			for i in self.ingredients:
 				i.printIngredient()
 		if self.steps:
-			print("STEPS:")
+			print("\nSTEPS:")
 			for s in self.steps:
-				printStepInfo(s)
+				s.printStep()
 		if self.p_methods:
-			print("PRIMARY METHODS: ", self.p_methods)
+			print("\nPRIMARY METHODS: ", self.p_methods)
 		if self.s_methods:
-			print("SECONDARY METHODS: ", self.s_methods)
+			print("\nSECONDARY METHODS: ", self.s_methods)
 		if self.tools:
-			print("TOOLS: ", self.tools)
+			print("\nTOOLS: ", self.tools)
 		if self.categories:
-			print("SORTED INGREDIENTS:")
+			print("\nSORTED INGREDIENTS:")
 			for cat in self.categories.keys():
-				print(cat.title() + ": ", [i.name for i in categories[cat]])
+				print(cat.title() + ": ", [i.name for i in self.categories[cat]])

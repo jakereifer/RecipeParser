@@ -16,6 +16,7 @@ class Ingredient(object):
 
 	# Print the ingredient in a human friendly manner
 	def printIngredient(self):
+		print()
 		if self.name:
 			print("Name: ", self.name)
 		if self.quantity:
