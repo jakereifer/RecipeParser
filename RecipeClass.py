@@ -1,7 +1,8 @@
 import knowledgebase
 from helpers import *
+from IngredientClass import *
+from StepClass import *
 from ingredientparser import *
-from stepparsery import *
 
 class Recipe(object):
 	name = ""
@@ -36,7 +37,7 @@ class Recipe(object):
 		if self.ingredients:
 			print("INGREDIENTS:")
 			for i in self.ingredients:
-				printIngredient(i)
+				i.printIngredient()
 		if self.steps:
 			print("STEPS:")
 			for s in self.steps:

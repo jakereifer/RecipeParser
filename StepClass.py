@@ -1,7 +1,9 @@
 import knowledgebase
 import helpers
 from nltk.corpus import stopwords
+import IngredientClass
 import ingredientparser
+import RecipeClass
 import jakeparser
 import re
 

@@ -9,21 +9,6 @@ def findWordsInSteps(keywords, strings):
 				keywordsfound.append(keyword.capitalize())
 	return keywordsfound
 
-class Ingredient(object):
-	name = ""
-	quantity = 0
-	measurement = ""
-	descriptor = ""
-	preparation = ""
-	tags = []
-
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep="", tags=[]):
-		self.name = name
-		self.quantity = quantity,
-		self.measurement = measurement
-		self.descriptor = desc
-		self.preparation = prep
-		self.tags = tags
 
 transformations = { 0: "NONE",
 					1: "TO_VEGETARIAN",

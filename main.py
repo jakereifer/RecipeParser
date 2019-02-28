@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
-import ingredientparser
-import knowledgebase
-import stepparsery
+from ingredientparser import *
+from IngredientClass import *
+import StepClass
 from helpers import *
-from recipe import *
+from RecipeClass import *
+import knowledgebase
 
 
 
@@ -35,17 +36,17 @@ print("")
 # number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
 # for i in range(0, number_of_ingredients):
 #     ingredient_string = page_content.find_all("span", {"class": "recipe-ingred_txt added"})[i].text
-    # recipe.ingredients.append(ingredientparser.parseIngredient(ingredient_string.strip()))
+    # recipe.ingredients.append(IngredientClass.parseIngredient(ingredient_string.strip()))
 
 # Scrape for ingredients
 for ingr in page_content.find_all("span", {"class": "recipe-ingred_txt added"}):
-	recipe.ingredients.append(ingredientparser.parseIngredient(ingr.text.strip()))
+	recipe.ingredients.append(parseIngredient(ingr.text.strip()))
 
 #Print parsed ingredients
 print("Ingredients:\n")
-# recipe.ingredients = [ingredientparser.parseIngredient(i) for i in scraped_ingredients]
+# recipe.ingredients = [IngredientClass.parseIngredient(i) for i in scraped_ingredients]
 for ingr in recipe.ingredients:
-	ingredientparser.printIngredient(ingr)
+	ingr.printIngredient()
 	print("")
 
 # Scrape for steps
@@ -58,8 +59,8 @@ for i in range(0, number_of_steps):
 scraped_ingredients = [i.text.strip() for i in page_content.find_all("span", {"class": "recipe-ingred_txt added"})]
 print("STEPS")
 print("           ")
-stepsList = stepparsery.parseSteps(scraped_steps, scraped_ingredients)
-stepparsery.printStepInfo(stepsList)
+stepsList = StepClass.parseSteps(scraped_steps, scraped_ingredients)
+StepClass.printStepInfo(stepsList)
 
 
 # get list of Tools, Methods (primary and secondary)
