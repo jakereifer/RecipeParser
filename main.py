@@ -29,13 +29,15 @@ print("")
 print(recipe.name)
 print("")
 
+
+# number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
+# for i in range(0, number_of_ingredients):
+#     ingredient_string = page_content.find_all("span", {"class": "recipe-ingred_txt added"})[i].text
+    # recipe.ingredients.append(ingredientparser.parseIngredient(ingredient_string.strip()))
+
 # Scrape for ingredients
-number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
-for i in range(0, number_of_ingredients):
-    ingredient_string = page_content.find_all("span", {"class": "recipe-ingred_txt added"})[i].text
-    recipe.ingredients.append(ingredientparser.parseIngredient(ingredient_string.strip()))
-
-
+for ingr in page_content.find_all("span", {"class": "recipe-ingred_txt added"}):
+	recipe.ingredients.append(ingredientparser.parseIngredient(ingr.text.strip()))
 #Print parsed ingredients
 print("Ingredients:\n")
 # recipe.ingredients = [ingredientparser.parseIngredient(i) for i in scraped_ingredients]
