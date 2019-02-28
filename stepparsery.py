@@ -17,11 +17,11 @@ class Step(object):
 		self.tools = []
 
 
-def parseSteps(scraped_steps, scraped_ingredients):
+def parseSteps(scraped_steps, ingrs):
 	# create Dictionary
 	stepsList = []
 	# clean ingredients
-	ingredientNames = cleanIngredients(scraped_ingredients)
+	ingredientNames = cleanIngredients(ingrs)
 	# clean steps
 	cleaned_steps = jakeparser.separateIntermediateSteps(scraped_steps)
 	# loop through steps
@@ -43,18 +43,16 @@ def parseSteps(scraped_steps, scraped_ingredients):
 	# return Dictionary
 	return stepsList
 
-def cleanIngredients(scraped_ingredients):
+def cleanIngredients(ingrs):
 	commonIngredients = ['water']
 	ingredientNames = []
-	for i in scraped_ingredients:
-		parsed = ingredientparser.parseIngredient(i)
-		ingredientNames.append(parsed.name)
-	return ingredientNames
+	for i in ingrs:
+		ingredientNames.append(i.name)
 
 	for i in commonIngredients:
 		if not i in ingredientNames:
 			ingredientNames.append(i)
-		return ingredientList
+	return ingredientNames
 
 
 def findTimes(step):

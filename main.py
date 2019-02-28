@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import ingredientparser
-import stepparsery
 import knowledgebase
+import stepparsery
 from helpers import *
 
 
@@ -10,6 +10,7 @@ from helpers import *
 # test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
 # https://www.allrecipes.com/recipe/10552/giant-chocolate-chip-cookie/?internalSource=hub%20recipe&referringContentType=Search
 # with parens: https://www.allrecipes.com/recipe/8350/chantals-new-york-cheesecake/?internalSource=hub%20recipe&referringId=79&referringContentType=Recipe%20Hub&clickId=cardslot%2015
+
 
 
 # Prompt for URL
@@ -29,6 +30,12 @@ print("")
 print(recipe.name)
 print("")
 
+
+# number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
+# for i in range(0, number_of_ingredients):
+#     ingredient_string = page_content.find_all("span", {"class": "recipe-ingred_txt added"})[i].text
+    # recipe.ingredients.append(ingredientparser.parseIngredient(ingredient_string.strip()))
+
 # Scrape for ingredients
 for ingr in page_content.find_all("span", {"class": "recipe-ingred_txt added"}):
 	recipe.ingredients.append(ingredientparser.parseIngredient(ingr.text.strip()))
@@ -39,6 +46,7 @@ for ingr in recipe.ingredients:
 	ingredientparser.printIngredient(ingr)
 	print("")
 
+
 # Scrape for steps
 scraped_steps = []
 number_of_steps = len(page_content.find_all("span", {"class": "recipe-directions__list--item"}))
@@ -46,16 +54,10 @@ for i in range(0, number_of_steps):
     step_string = page_content.find_all("span", {"class": "recipe-directions__list--item"})[i].text
     recipe.steps.append(step_string.strip())
 
-#Print parsed ingredients
-print("INGREDIENTS")
-print("           ")
-for i in scraped_ingredients:
-	ingredientparser.printIngredient(ingredientparser.parseIngredient(i))
-	print("")
 
 print("STEPS")
 print("           ")
-stepsList = stepparsery.parseSteps(scraped_steps, scraped_ingredients)
+stepsList = stepparsery.parseSteps(scraped_steps, recipe.ingredients)
 stepparsery.printStepInfo(stepsList)
 
 
@@ -84,5 +86,3 @@ print("           ")
 print ("ALL SECONDARY METHODS")
 print("           ")
 print(scraped_secondary_methods)
-
-

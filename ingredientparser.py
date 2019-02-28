@@ -146,9 +146,8 @@ def printIngredient(i):
 
 	
 def ingredientTags(i):
-	tags = [](i.name)
+	tags = []
 	for category, lst in knowledgebase.categories.items():
-		print([x.name for x in lst])
 		for ingr in lst:
 			if contains_word(i.name, ingr.name):
 				print(ingr.name, i.name)
@@ -159,6 +158,5 @@ def ingredientTags(i):
 				if contains_word(i.name, ingr.name+'s'):
 					if category not in tags:
 						tags.append(category)
-	print(tags)
 	return tags
 
