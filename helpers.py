@@ -69,5 +69,13 @@ def validateTransform(err=False):
 	for k, v in transformations.items():
 	     print("%d\t%s" % (k, v))
 	inp = input("Please enter the number corresponding to the transformation you'd like to perform:\t")
-	transf = int(inp) if int(inp) in transformations.keys() else (validateTransform(True))
+	try:
+		transf = int(inp) if int(inp) in transformations.keys() else (validateTransform(True))
+	except:
+		transf = validateTransform(True) 
 	return transf
+
+def contains_word(s, w):
+	s = s.lower()
+	w = w.lower()
+	return (' ' + w + ' ') in (' ' + s + ' ')

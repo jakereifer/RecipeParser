@@ -197,7 +197,6 @@ for ingr in ingredients_kb:
 		if c in ingr.tags:
 			categories[c].append(ingr)
 
-pprint(categories)
 
 
 
