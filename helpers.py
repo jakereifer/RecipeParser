@@ -70,3 +70,9 @@ def validateTransform(err=False):
 	inp = input("Please enter the number corresponding to the transformation you'd like to perform:\t")
 	transf = int(inp) if int(inp) in transformations.keys() else (validateTransform(True))
 	return transf
+
+def contains_word(s, w):
+	s = s.lower()
+	w = w.lower()
+	return (' ' + w + ' ') in (' ' + s + ' ')
+

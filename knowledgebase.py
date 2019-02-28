@@ -70,31 +70,17 @@ meat_subs = { Ingredient(name='hamburger'): [Ingredient(name='veggie burger'), I
 				}
 
 
-tools = ["baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet",
-		"colander","cutting board","double boiler","dutch oven","foil","food processer ","fork","frying pan",
-		"funnel","garlic press","grill","hand mixer","knife","ladel","mandoline","measuring cup","microplane", 
-		"mortar","paper towel","parchment paper","paring knife","peeler","pesltle","plastic wrap","plate","pot",
-		"rack",'ramekin',"roasting pan","rolling pin","saucepan","sheet pan","sieve","skewer","skillet","smoker",
-		"spatula","spoon","stand mixer","stock pot","thermometer","timer","tongs","twine","whisk", "sifter", "strainer", "mallet"]
 
-primary_methods = ["bake","barbeque","boil","broil","braise","carmelize","flambe","fry","grill",
-					"parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer",
-					"stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify"]
+tools = ["refrigerator","container", "baking sheet","blender","bowl","box grater","brush","can opener","cast iron skillet","colander","cutting board","double boiler", "oven", "foil","food processer ","fork","frying pan","funnel","garlic press","grill","hand mixer","knife","ladel","mandoline","measuring cup","microplane","mortar","paper towel","parchment paper","paring knife","peeler","pesltle","plastic wrap","plate","pot","rack",'ramekin',"roasting pan","rolling pin","saucepan","sheet pan","sieve","skewer","skillet","smoker","spatula","spoon","stand mixer","stock pot","thermometer","timer","tongs","twine","whisk", "sifter", "strainer", "mallet"]
 
-secondary_methods = ["arange","add","heat","brown","beat","blache","heat","cover","chop","combine",
-					"crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix",
-					"pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk",
-					"spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "oil", "butter", "prepare"
-					"refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve",
-					"put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow". "rest", "toss", "distribute", "wash", "fill",
-					"mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
+primary_methods = ["cook","bake","serve","barbeque","boil","broil","braise","carmelize","flambe","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer","stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray"]
 
-units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon",
-		"milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head",
-		"loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
+secondary_methods = ["refrigerate","remove", "lift", "arange","add","heat","brown","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
 
-preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed",
-				"peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
+units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
+
+preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
+
 
 """
 method_tools = {
