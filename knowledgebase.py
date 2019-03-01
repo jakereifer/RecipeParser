@@ -1,7 +1,6 @@
 import pandas as pd
-from pprint import pprint 
-# import measurements
-from helpers import Ingredient
+from pprint import pprint
+from IngredientClass import *
 
 class Unit(object):
 	name = ''

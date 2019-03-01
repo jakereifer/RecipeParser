@@ -1,5 +1,6 @@
 import knowledgebase
 from helpers import *
+from IngredientClass import *
 
 def parseIngredient(i):
 	# words of the ingredient
@@ -150,8 +151,6 @@ def ingredientTags(i):
 	for category, lst in knowledgebase.categories.items():
 		for ingr in lst:
 			if contains_word(i.name, ingr.name):
-				print(ingr.name, i.name)
-				print(ingr.name in i.name)
 				if category not in tags:
 					tags.append(category)
 			elif i.name[-1] == 's':

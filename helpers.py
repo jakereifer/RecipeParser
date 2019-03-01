@@ -10,42 +10,6 @@ def findWordsInSteps(keywords, strings):
 	return keywordsfound
 
 
-class Recipe(object):
-	name = ""
-	ingredients = []
-	steps = []
-	p_methods = []
-	s_methods = []
-	tools = []
-	tags = []
-
-
-	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], tags=[]):
-		self.name = name
-		self.ingredients = ingredients
-		self.steps = steps
-		self.p_methods = p_methods
-		self.s_methods = s_methods
-		self.tools = tools
-		self.tags = tags
-
-
-class Ingredient(object):
-	name = ""
-	quantity = 0
-	measurement = ""
-	descriptor = ""
-	preparation = ""
-	tags = []
-
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep="", tags=[]):
-		self.name = name
-		self.quantity = quantity,
-		self.measurement = measurement
-		self.descriptor = desc
-		self.preparation = prep
-		self.tags = tags
-
 transformations = { 0: "NONE",
 					1: "TO_VEGETARIAN",
 					2: "FROM_VEGETARIAN",

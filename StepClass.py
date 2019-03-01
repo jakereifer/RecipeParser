@@ -1,7 +1,9 @@
 import knowledgebase
 import helpers
 from nltk.corpus import stopwords
+import IngredientClass
 import ingredientparser
+import RecipeClass
 import jakeparser
 import re
 
@@ -15,6 +17,19 @@ class Step(object):
 		self.time = ""
 		self.methods = []
 		self.tools = []
+
+	def printStep(self):
+		print()
+		if self.text:
+			print("step: ", self.text)
+		if self.ingredients:
+			print("ingredients: ", self.ingredients)
+		if self.time:
+			print("time: ", self.time)
+		if self.methods:
+			print("methods: ", self.methods)
+		if self.tools:
+			print("tools: ", self.tools)
 
 
 def parseSteps(scraped_steps, scraped_ingredients):
@@ -154,8 +169,6 @@ def findKeywords(step, listWords):
 	finalIngs = list(set(finalIngs))
 	return finalIngs
 
-
-
 def findTools(step):
 	finalList = []
 	toolList = knowledgebase.tools
@@ -163,8 +176,6 @@ def findTools(step):
 		if contains_word(step, tool) and not tool in finalList:
 			finalList.append(tool)
 	return finalList
-
-
 
 def printStepInfo(stepsList):
 	for s in stepsList:
