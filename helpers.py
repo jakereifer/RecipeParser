@@ -10,13 +10,21 @@ def findWordsInSteps(keywords, strings):
 	return keywordsfound
 
 
+transformations_display = { 0: "None",
+					1: "To vegetarian",
+					2: "From vegetarian",
+					3: "From healthy",
+					4: "To healthy", 
+					5: "To cuisine",
+					6: "From cuisine" }
+
 transformations = { 0: "NONE",
-					1: "TO_VEGETARIAN",
-					2: "FROM_VEGETARIAN",
-					3: "TO_HEALTHY",
-					4: "FROM_HEALTHY", 
-					5: "TO_CUISINE",
-					6: "FROM_CUISINE" }
+					1: "from not vegetarian",
+					2: "from vegetarian",
+					3: "from unhealthy",
+					4: "from healthy", 
+					5: "from from cuisine",
+					6: "from cuisine" }
 
 def validatePageLink(err=False):
 	if err:
@@ -30,7 +38,7 @@ def validateTransform(err=False):
 		print("** INVALID TRANSFORM **\n Please try again.")
 
 	print("\nRecipe Transformations:")
-	for k, v in transformations.items():
+	for k, v in transformations_display.items():
 	     print("%d\t%s" % (k, v))
 	inp = input("Please enter the number corresponding to the transformation you'd like to perform:\t")
 	try:
