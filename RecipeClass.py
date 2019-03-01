@@ -34,14 +34,6 @@ class Recipe(object):
 	def printRecipe(self):
 		if self.name:
 			print("Name: ", self.name)
-		if self.ingredients:
-			print("\nINGREDIENTS:")
-			for i in self.ingredients:
-				i.printIngredient()
-		if self.steps:
-			print("\nSTEPS:")
-			for s in self.steps:
-				s.printStep()
 		if self.p_methods:
 			print("\nPRIMARY METHODS: ", self.p_methods)
 		if self.s_methods:
@@ -52,3 +44,12 @@ class Recipe(object):
 			print("\nSORTED INGREDIENTS:")
 			for cat in self.categories.keys():
 				print(cat.title() + ": ", [i.name for i in self.categories[cat]])
+		if self.ingredients:
+			print("\nINGREDIENTS:")
+			for i in self.ingredients:
+				i.printIngredient()
+		if self.steps:
+			print("\nSTEPS:")
+			for s in self.steps:
+				s.printStep()
+		
