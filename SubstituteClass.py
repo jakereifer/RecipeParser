@@ -7,3 +7,8 @@ class Substitute(object):
 	quantity = {}
 	tools = {}
 	
+	def __init__(self, name="", methods={}, quantity={}, tools{}):
+		self.name = name
+		self.methods = methods
+		self.quantity = quantity
+		self.tools = tools
