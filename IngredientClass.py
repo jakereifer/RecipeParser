@@ -5,14 +5,20 @@ class Ingredient(object):
 	descriptor = ""
 	preparation = ""
 	tags = []
+	substitute = {  1: "",
+					2: "",
+					3: "",
+					4: ""}
 
-	def __init__(self, name="", quantity=0, measurement="", desc="", prep="", tags=[]):
+	def __init__(self, name="", quantity=0, measurement="", desc="", prep="",
+		tags=[], substitute={ 1: "", 2: "", 3: "",4: ""}):
 		self.name = name
 		self.quantity = quantity,
 		self.measurement = measurement
 		self.descriptor = desc
 		self.preparation = prep
 		self.tags = tags
+		self.substitute = substitute
 
 	# Print the ingredient in a human friendly manner
 	def printIngredient(self):
@@ -29,3 +35,5 @@ class Ingredient(object):
 			print("Preparation: ", self.preparation)
 		if self.tags:
 			print("Tags: ", self.tags)
+		if self.substitute:
+			print("Substitute: ", self.substitute)

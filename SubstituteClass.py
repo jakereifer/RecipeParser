@@ -2,13 +2,14 @@ from IngredientClass import *
 from RecipeClass import *
 
 class Substitute(object):
-	name = ""
+	canreplace = []
 	methods = {}
 	quantity = {}
 	tools = {}
 	
-	def __init__(self, name="", methods={}, quantity={}, tools{}):
-		self.name = name
+	
+	def __init__(self, canreplace=[], methods={}, quantity={}, tools={}):
+		self.canreplace = canreplace
 		self.methods = methods
 		self.quantity = quantity
 		self.tools = tools
