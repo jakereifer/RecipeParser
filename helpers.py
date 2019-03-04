@@ -12,8 +12,8 @@ def findWordsInSteps(keywords, strings):
 
 transformations_display = { 0: "None",
 					1: "To vegetarian", # not vegetarian
-					2: "From vegetarian", # vegetarian
-					3: "From healthy", # healthy
+					2: "To non vegetarian", # vegetarian
+					3: "To unhealthy", # healthy
 					4: "To healthy", # unhealthy
 					5: "To mexican",
 					}

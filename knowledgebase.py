@@ -200,6 +200,7 @@ ingredients_kb = [
 	Ingredient(name= "parsley", tags=["seasoning"]),
 	Ingredient(name= "italian seasoning", tags=["seasoning"]),
 	Ingredient(name= "filet mignon steak", tags=[1, 4]),
+	Ingredient(name= "olive oil", tags=[3]),
 	
 ]
 
@@ -220,8 +221,8 @@ substitute_map= {
  "veggie meatballs" :Substitute(canreplace=["meatballs", "ground beef"],quantity={"default": (60, "gram")}),
  },
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
-3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
-4:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
+3:{"butter": Substitute(["olive oil"],quantity={"default": (1, "cup")})},
+4:{}, #from vegetarian to non-vegetarian
 5: {"jalapeno": Substitute(["green pepper", "bell pepper", "yellow pepper"],{},{"default":(5,"count") },{}),
 	"lime juice": Substitute(["lemon juice", "lemon zest"],{},{"default":(1,"teaspoon")},{}), 
 	"salsa": Substitute(["barbeque sauce", "marinara sauce", "pesto"],{},{"default":(.5,"cup")},{}),
@@ -238,19 +239,21 @@ substitute_map= {
 
 
 
-"""transformations_display = { 0: "None",
-					1: "To vegetarian", # not vegetarian
-					2: "From vegetarian", # vegetarian
-					3: "From healthy", # healthy
-					4: "To healthy", # unhealthy
-					5: "To cuisine",
-					6: "From cuisine" }
+# """
+# transformations_display = { 0: "None",
+# 					1: "To vegetarian", # not vegetarian
+# 					2: "From vegetarian", # vegetarian
+# 					3: "From healthy", # healthy
+# 					4: "To healthy", # unhealthy
+# 					5: "To cuisine",
+# 					6: "From cuisine" }
 
 
-1: not vegetarian
-2: vegetarian
-3: healthy
-4: unhealthy"""
+# 1: not vegetarian
+# 2: vegetarian
+# 3: healthy
+# 4: unhealthy
+# """
 
 cs = [3, 4, 2, 1, "seasoning",5]
 categories = {}
