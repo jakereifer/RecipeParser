@@ -220,7 +220,14 @@ substitute_map= {
 					3: "From healthy", # healthy
 					4: "To healthy", # unhealthy
 					5: "To cuisine",
-					6: "From cuisine" }"""
+					6: "From cuisine" }
+
+
+1: not vegetarian
+2: vegetarian
+3: healthy
+4: unhealthy"""
+
 cs = [3, 4, 2, 1, "seasoning",5]
 categories = {}
 
