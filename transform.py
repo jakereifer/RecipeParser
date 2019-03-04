@@ -1,6 +1,6 @@
 from RecipeClass import *
 from knowledgebase import *
-
+from helpers import *
 
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
@@ -33,11 +33,20 @@ def TransformRecipe(recipe, transform, servings):
 				# quantity
 
 	#for mexican
-	mex_seasonings = ["chili powder", "garlic powder", "cumin", "onion powder", "paprika", "oregano"]
+	pre_mex_seasonings = ["chili powder", "garlic powder", "cumin", "onion powder", "paprika", "oregano", "red pepper flakes"]
+	mex_seasonings = []
+	for seasoning in pre_mex_seasonings:
+		found = False
+		for ingredient in recipe.ingredients:
+			if contains_word(ingredient.name, seasoning):
+				found = True
+		if not found:
+			mex_seasonings.append(seasoning)
+	print("MEX: ", mex_seasonings)
 	if transform == 5:
 		for ingredient in recipe.ingredients:
-			if ingredient.tags:
-				print("Ingr: ", ingredient.name, "tags: ", ingredient.tags)
+			# if ingredient.tags:
+			# print("Ingr: ", ingredient.name, "tags: ", ingredient.tags)
 			if "seasoning" in ingredient.tags:
 				if len(mex_seasonings) > 0:
 					ingredient.name = mex_seasonings.pop(0)
@@ -48,14 +57,18 @@ def TransformRecipe(recipe, transform, servings):
 	while len(mex_seasonings) > 0:
 		new_ingr = Ingredient(mex_seasonings.pop(0), 1.0, "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})
 		new_ingredients.append(new_ingr)
-	recipe.ingredients = recipe.ingredients + new_ingredients
-	s = Step()
-	s.text = "sprinkle seasoning on top of dish"
-	s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
-	s.time = ""
-	s.methods = ["sprinkle"]
-	s.tools = []
-	recipe.steps.append(s)
+	if not new_ingredients == []: 
+		print("new ingr: ", new_ingredients)
+		recipe.ingredients = recipe.ingredients + new_ingredients
+		s = Step()
+		s.text = "sprinkle seasoning on top of dish"
+		s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
+		s.time = ""
+		s.methods = ["sprinkle"]
+		s.tools = []
+		recipe.steps.append(s)
+	else:
+		print("no extra")
 
 
 
