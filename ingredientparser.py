@@ -103,7 +103,7 @@ def parseIngredient(i):
 		if found_prep:
 			break
 		for pw in prep_words:
-			if pw == rs_words[i] and includeAsPrep(pw, rs_words):
+			if pw == rs_words[i] and not dontIncludeAsPrep(pw, rs_words[i:]):
 				found_prep = True
 				if len(rs_words) > i+1:
 					ingredient.name = " ".join(rs_words[i+1:])
@@ -122,8 +122,8 @@ def parseIngredient(i):
 	return ingredient
 
 # returns true if the prep word is actually part of the ingredient name
-def includeAsPrep(pw, words):
-	return not(pw in ["shredded", "ground"] and (meat in rest_words for meat in ["beef", "pork", "chicken", "turkey"]))
+def dontIncludeAsPrep(pw, words):
+	return (pw in ["shredded", "ground"] and (True in [meat in words for meat in ["beef", "pork", "chicken", "turkey"]]))
 
 # parse the amount needed in decimal
 def parse_amount(amount_string):
