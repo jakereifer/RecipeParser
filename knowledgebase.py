@@ -185,7 +185,7 @@ ingredients_kb = [
 	Ingredient(name="brown rice", tags=[3]),
 	Ingredient(name="butter", tags=[4]),
 	Ingredient(name="buttermilk", tags=[4]),
-	Ingredient(name="cheese", tags=[4]),
+	Ingredient(name="cheese", tags=[4,5]),
 	Ingredient(name="turmeric", tags=["seasoning"]),
 	Ingredient(name="basil", tags=["seasoning"]),
 	Ingredient(name="ginger", tags=["seasoning"]),
@@ -196,7 +196,9 @@ ingredients_kb = [
 	Ingredient(name= "thyme", tags=["seasoning"]),
 	Ingredient(name= "garam masala", tags=["seasoning"]),
 	Ingredient(name= "rosemary", tags=["seasoning"]),
-	Ingredient(name= "sage", tags=["seasoning"])
+	Ingredient(name= "sage", tags=["seasoning"]),
+	Ingredient(name= "parsley", tags=["seasoning"]),
+	Ingredient(name= "italian seasoning", tags=["seasoning"]),
 ]
 
 substitute_map= {
@@ -205,7 +207,10 @@ substitute_map= {
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
 3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
 4:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
-5: {},
+5: {"jalapeno": Substitute(["green pepper", "bell pepper", "yellow pepper"],{},{"default":(5,"count") },{}),
+	"lime juice": Substitute(["lemon juice", "lemon zest"],{},{"default":(1,"teaspoon")},{}), 
+	"salsa": Substitute(["barbeque sauce", "marinara sauce", "pesto"],{},{"default":(.5,"cup")},{}),
+	"cotija cheese": Substitute(["cheese"],{},{"default":(.25, "cup")},{})},
 "seasoning": {} #to mexican
 }
 
@@ -216,7 +221,7 @@ substitute_map= {
 					4: "To healthy", # unhealthy
 					5: "To cuisine",
 					6: "From cuisine" }"""
-cs = [3, 4, 2, 1, "seasoning"]
+cs = [3, 4, 2, 1, "seasoning",5]
 categories = {}
 
 for c in cs:

@@ -52,7 +52,7 @@ def TransformRecipe(recipe, transform, servings):
 					ingredient.name = mex_seasonings.pop(0)
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
-						ingredient.quantity = 1.0
+						ingredient.quantity = float(1.0)
 	new_ingredients = []
 	while len(mex_seasonings) > 0:
 		new_ingr = Ingredient(mex_seasonings.pop(0), 1.0, "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})

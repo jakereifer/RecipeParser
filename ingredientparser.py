@@ -161,21 +161,22 @@ def ingredientTagsAndSubs(i):
 	substitute = {1: None,
 					2: None,
 					3: None,
-					4: None}
+					4: None,
+					5: None,}
 	for category, lst in knowledgebase.categories.items():
 		for ingr in lst:
 			if contains_word(i.name, ingr.name):
 				if category not in tags:
 					tags.append(category)
 					for sub in knowledgebase.substitute_map[category]:
-						if i.name in knowledgebase.substitute_map[category][sub].canreplace:
+						if ingr.name in knowledgebase.substitute_map[category][sub].canreplace:
 							substitute[category] = sub
 			elif i.name[-1] == 's':
 				if contains_word(i.name, ingr.name+'s'):
 					if category not in tags:
 						tags.append(category)
 						for sub in knowledgebase.substitute_map[category]:
-							if i.name in knowledgebase.substitute_map[category][sub].canreplace:
+							if ingr.name in knowledgebase.substitute_map[category][sub].canreplace:
 								substitute[category] = sub
 
 	return tags, substitute
