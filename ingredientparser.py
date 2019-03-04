@@ -103,7 +103,7 @@ def parseIngredient(i):
 		if found_prep:
 			break
 		for pw in prep_words:
-			if pw == rs_words[i]:
+			if pw == rs_words[i] and includeAsPrep(pw, rs_words):
 				found_prep = True
 				if len(rs_words) > i+1:
 					ingredient.name = " ".join(rs_words[i+1:])
@@ -121,6 +121,9 @@ def parseIngredient(i):
 	ingredient.tags, ingredient.substitute = ingredientTagsAndSubs(ingredient)
 	return ingredient
 
+# returns true if the prep word is actually part of the ingredient name
+def includeAsPrep(pw, words):
+	return not(pw in ["shredded", "ground"] and (meat in rest_words for meat in ["beef", "pork", "chicken", "turkey"]))
 
 # parse the amount needed in decimal
 def parse_amount(amount_string):
@@ -158,13 +161,21 @@ def printIngredient(i):
 	
 def ingredientTagsAndSubs(i):
 	tags = []
-	substitute = {1: None,
+	substitute = { 1: None,
 					2: None,
 					3: None,
-					4: None}
+					4: None }
+	longest = Ingredient()
 	for category, lst in knowledgebase.categories.items():
 		for ingr in lst:
 			if contains_word(i.name, ingr.name):
+				if len(ingr.name) > len(longest.name):
+					longest = ingr
+					tags = []
+					substitute = { 1: None,
+									2: None,
+									3: None,
+									4: None }
 				if category not in tags:
 					tags.append(category)
 					for sub in knowledgebase.substitute_map[category]:
@@ -172,11 +183,18 @@ def ingredientTagsAndSubs(i):
 							substitute[category] = sub
 			elif i.name[-1] == 's':
 				if contains_word(i.name, ingr.name+'s'):
+					if len(ingr.name) > len(longest.name):
+						longest = ingr
+						tags = []
+						substitute = { 1: None,
+										2: None,
+										3: None,
+										4: None }
 					if category not in tags:
 						tags.append(category)
 						for sub in knowledgebase.substitute_map[category]:
 							if i.name in knowledgebase.substitute_map[category][sub].canreplace:
 								substitute[category] = sub
 
-	return tags, substitute
+	return tags, {k: v for k, v in substitute.items() if v is not None}
 
