@@ -202,7 +202,7 @@ ingredients_kb = [
 ]
 
 substitute_map= {
-1:{"tofu": Substitute(["shrimp", "pork", "chicken"],{},{"default":(.75,"cups") },{}), #non-vegetarian to vegetarian
+1:{"tofu": Substitute(["shrimp", "pork", "chicken"],{},{"default":(.75,"cups")},{}), #non-vegetarian to vegetarian
 	"seitan": Substitute(["beef", "salmon", "lamb"], {},{},{})},
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
 3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
