@@ -31,6 +31,7 @@ recipe.name = page_content.find("h1", {"id": "recipe-main-content"}).text
 # print("")
 # print(recipe.name)
 # print("")
+servings = page_content.find("meta",{"id": "metaRecipeServings"})["content"]
 
 
 # number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
@@ -71,7 +72,7 @@ recipe.printRecipe()
 print("")
 print("After Transformation")
 print("")
-TransformRecipe(recipe,"","")
+TransformRecipe(recipe,transformation, servings)
 
 # get list of Tools, Methods (primary and secondary)
 # scraped_tools = []

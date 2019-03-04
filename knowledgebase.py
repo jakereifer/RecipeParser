@@ -163,8 +163,8 @@ ingredients_kb = [
 	Ingredient(name="tempeh", tags=[2, 3]),
 	Ingredient(name="texturized vegetable protein (tvp)", tags=[2, 3]),
 	Ingredient(name="tofu", tags=[2, 3]),
-	Ingredient(name="tofurkey", tags=[2, 3]),
-	Ingredient(name="vegetarian bacon", tags=[2, 3]),
+	Ingredient(name="tofurky", tags=[2, 3]),
+	Ingredient(name="veggie bacon strips", tags=[2, 3]),
 	Ingredient(name="veggie burger", tags=[2, 3]),
 	Ingredient(name="veggie dog", tags=[2, 3]),
 	Ingredient(name="whipped cream", tags=[4]),
@@ -180,7 +180,7 @@ ingredients_kb = [
 	Ingredient(name="cacao nibs ", tags=[3]),
 	Ingredient(name="almond milk", tags=[3]),
 	Ingredient(name="coconut milk", tags=[3]),
-	Ingredient(name="all-purpouse flour", tags=[4]),
+	Ingredient(name="all-purpose flour", tags=[4]),
 	Ingredient(name="bohrani", tags=[3]),
 	Ingredient(name="brown rice", tags=[3]),
 	Ingredient(name="butter", tags=[4]),
@@ -189,7 +189,7 @@ ingredients_kb = [
 ]
 
 substitute_map= {
-1:{"tofu": Substitute(["shrimp", "pork", "chicken"],{},{},{}), #non-vegetarian to vegetarian
+1:{"tofu": Substitute(["shrimp", "pork", "chicken"],{},{"default":(.75,"cups") },{}), #non-vegetarian to vegetarian
 	"seitan": Substitute(["beef", "salmon", "lamb"], {},{},{})},
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
 3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
