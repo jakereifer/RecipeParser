@@ -6,7 +6,7 @@ from StepClass import *
 from helpers import *
 from RecipeClass import *
 import knowledgebase
-
+from transform import *
 
 
 # test recipe URL: https://www.allrecipes.com/recipe/245863/chicken-stuffed-baked-avocados/?internalSource=popular&referringContentType=Homepage&clickId=cardslot%202
@@ -21,8 +21,8 @@ page_link = validatePageLink()
 
 
 transform_input = validateTransform()
-transformation = transformations[int(transform_input)]
-print(transformation)
+transformation = int(transform_input)
+print(transformation, transformations_display[transformation])
 page_response = requests.get(page_link, timeout=5)
 page_content = BeautifulSoup(page_response.content, "html.parser")
 
@@ -31,6 +31,7 @@ recipe.name = page_content.find("h1", {"id": "recipe-main-content"}).text
 # print("")
 # print(recipe.name)
 # print("")
+servings = page_content.find("meta",{"id": "metaRecipeServings"})["content"]
 
 
 # number_of_ingredients = len(page_content.find_all("span", {"class": "recipe-ingred_txt added"}))
@@ -67,6 +68,13 @@ recipe.p_methods = list(set([method for s in recipe.steps for method in s.method
 recipe.s_methods = list(set([method for s in recipe.steps for method in s.methods if method in knowledgebase.secondary_methods and method not in recipe.s_methods]))
 
 recipe.sortIngredientsIntoCategories() 
+recipe.printRecipe()
+
+if transformation != 0:
+	print("")
+	print("After Transformation")
+	print("")
+	TransformRecipe(recipe,transformation, servings)
 
 # get list of Tools, Methods (primary and secondary)
 # scraped_tools = []

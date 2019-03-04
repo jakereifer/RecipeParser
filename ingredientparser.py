@@ -8,7 +8,7 @@ def parseIngredient(i):
 	ingredient = Ingredient()
 	if len(i_words) == 1:
 		ingredient.name = i_words[0]
-		ingredient.tags = ingredientTags(ingredient)
+		ingredient.tags, ingredient.substitute = ingredientTagsAndSubs(ingredient)
 		return ingredient
 	# 2 eggs	
 	if len(i_words) == 2:
@@ -19,7 +19,7 @@ def parseIngredient(i):
 		else:
 			ingredient.name = " ".join(i_words)
 
-		ingredient.tags = ingredientTags(ingredient)
+		ingredient.tags, ingredient.substitute = ingredientTagsAndSubs(ingredient)
 		return ingredient
 	
 	name = 0
@@ -86,22 +86,30 @@ def parseIngredient(i):
 	#look if there is preparation steps
 	for pd in prep_dividers:
 		if pd in right_side:
-			ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
-			ingredient.name = right_side.split(pd)[0].strip()
-			right_side = ingredient.name
+			if len(right_side.split(pd)) > 2:
+				# print(right_side.split(pd))
+				ingredient.preparation = ", ".join(right_side.split(pd)[2:]).strip()
+				# print("THIS: ", "".join(right_side.split(pd)[0:2]).strip())
+				ingredient.name = "".join(right_side.split(pd)[0:2]).strip()
+				right_side = ingredient.name
+				# print("name ", ingredient.name)
+			else:
+				ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
+				ingredient.name = right_side.split(pd)[0].strip()
+				right_side = ingredient.name
 	rs_words = right_side.split()
 	found_prep = False
 	for i in range(0,len(rs_words)):
 		if found_prep:
 			break
 		for pw in prep_words:
-			if pw == rs_words[i]:
+			if pw == rs_words[i] and not dontIncludeAsPrep(pw, rs_words[i:]):
 				found_prep = True
 				if len(rs_words) > i+1:
 					ingredient.name = " ".join(rs_words[i+1:])
 				else:
 					ingredient.name = rightside
-					ingredient.tags = ingredientTags(ingredient)
+					ingredient.tags = ingredientTagsAndSubs(ingredient)
 					return ingredient
 				if not ingredient.preparation == "":
 					ingredient.preparation = ingredient.preparation + ", " + " ".join(rs_words[:i+1])
@@ -110,9 +118,12 @@ def parseIngredient(i):
 				break
 	if not found_prep:
 		ingredient.name = right_side
-	ingredient.tags = ingredientTags(ingredient)
+	ingredient.tags, ingredient.substitute = ingredientTagsAndSubs(ingredient)
 	return ingredient
 
+# returns true if the prep word is actually part of the ingredient name
+def dontIncludeAsPrep(pw, words):
+	return (pw in ["shredded", "ground"] and (True in [meat in words for meat in ["beef", "pork", "chicken", "turkey"]]))
 
 # parse the amount needed in decimal
 def parse_amount(amount_string):
@@ -144,18 +155,49 @@ def printIngredient(i):
 		print("Preparation: ", i.preparation)
 	if i.tags:
 		print("Tags: ", i.tags)
+	if i.substitute:
+		print("Substitutes: ", i.substitute)
 
 	
-def ingredientTags(i):
+def ingredientTagsAndSubs(i):
 	tags = []
+	substitute = { 1: None,
+					2: None,
+					3: None,
+					4: None, 
+          5: None}
+	longest = Ingredient()
 	for category, lst in knowledgebase.categories.items():
 		for ingr in lst:
 			if contains_word(i.name, ingr.name):
+				if len(ingr.name) > len(longest.name):
+					longest = ingr
+					tags = []
+					substitute = { 1: None,
+									2: None,
+									3: None,
+									4: None,
+                  5: None}
 				if category not in tags:
 					tags.append(category)
+					for sub in knowledgebase.substitute_map[category]:
+						if ingr.name in knowledgebase.substitute_map[category][sub].canreplace:
+							substitute[category] = sub
 			elif i.name[-1] == 's':
 				if contains_word(i.name, ingr.name+'s'):
+					if len(ingr.name) > len(longest.name):
+						longest = ingr
+						tags = []
+						substitute = { 1: None,
+										2: None,
+										3: None,
+										4: None,
+                    5: None}
 					if category not in tags:
 						tags.append(category)
-	return tags
+						for sub in knowledgebase.substitute_map[category]:
+							if ingr.name in knowledgebase.substitute_map[category][sub].canreplace:
+								substitute[category] = sub
+
+	return tags, {k: v for k, v in substitute.items() if v is not None}
 
