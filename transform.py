@@ -1,6 +1,7 @@
 from RecipeClass import *
 from knowledgebase import *
 from helpers import *
+from ingredientparser import *
 
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
@@ -52,23 +53,23 @@ def TransformRecipe(recipe, transform, servings):
 					ingredient.name = mex_seasonings.pop(0)
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
-						ingredient.quantity = 1.0
-	new_ingredients = []
-	while len(mex_seasonings) > 0:
-		new_ingr = Ingredient(mex_seasonings.pop(0), 1.0, "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})
-		new_ingredients.append(new_ingr)
-	if not new_ingredients == []: 
-		print("new ingr: ", new_ingredients)
-		recipe.ingredients = recipe.ingredients + new_ingredients
-		s = Step()
-		s.text = "sprinkle seasoning on top of dish"
-		s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
-		s.time = ""
-		s.methods = ["sprinkle"]
-		s.tools = []
-		recipe.steps.append(s)
-	else:
-		print("no extra")
+						ingredient.quantity = parse_amount("1")
+		new_ingredients = []
+		while len(mex_seasonings) > 0:
+			new_ingr = Ingredient(mex_seasonings.pop(0), parse_amount("1"), "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})
+			new_ingredients.append(new_ingr)
+		if not new_ingredients == []: 
+			print("new ingr: ", new_ingredients)
+			recipe.ingredients = recipe.ingredients + new_ingredients
+			s = Step()
+			s.text = "sprinkle seasoning on top of dish"
+			s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
+			s.time = ""
+			s.methods = ["sprinkle"]
+			s.tools = []
+			recipe.steps.append(s)
+		else:
+			print("no extra")
 
 
 

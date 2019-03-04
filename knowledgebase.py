@@ -199,11 +199,26 @@ ingredients_kb = [
 	Ingredient(name= "sage", tags=["seasoning"]),
 	Ingredient(name= "parsley", tags=["seasoning"]),
 	Ingredient(name= "italian seasoning", tags=["seasoning"]),
+	Ingredient(name= "filet mignon steak", tags=[1, 4]),
+	
 ]
 
 substitute_map= {
-1:{"tofu": Substitute(["shrimp", "pork", "chicken"],{},{"default":(.75,"cups") },{}), #non-vegetarian to vegetarian
-	"seitan": Substitute(["beef", "salmon", "lamb"], {},{},{})},
+1:{ "beans" :Substitute(canreplace=["ground pork", "chorizo"],quantity={"default": (.5, "cup")}),
+ "chik'n" :Substitute(canreplace=["chicken"],quantity={"default": (7, "grams")}),
+ "falafel" :Substitute(canreplace=["gyro", "lamb"],quantity={"default": (3.5, "ounces")}) ,
+ "seitan" :Substitute(canreplace=["duck", "lobster", "shrimp", "calamari", "foie gras"],quantity={"default": (.66, "cup")}) ,
+ "tempeh" :Substitute(canreplace=["beef", "steak", "veal", "crab"],quantity={"default": (3, "ounces")}) ,
+ "texturized vegetable protein (tvp)" :Substitute(canreplace=["default", "ham", "goat"],quantity={"default": (.25, "cup")}) ,
+ "tofu" :Substitute(canreplace=["fish", "caviar","clam","cod","halibut","ikura","mussel","mahi mahi","salmon","scallop","trout","tuna"],quantity={"default": (.75, "cup")}) ,
+ "tofurky" :Substitute(canreplace=["turkey"],quantity={"default": (5, "slices")}) ,
+ "veggie bacon strips" :Substitute(canreplace=["bacon"],quantity={"default": (16, "grams")}) ,
+ "veggie burger" :Substitute(canreplace=["burger", "hamburger"],quantity={"default": (1, "count")}) ,
+ "veggie dog" :Substitute(canreplace=["hot dog"],quantity={"default": (1, "count")}), 
+ "vegetable stock" :Substitute(canreplace=["chicken stock"],quantity={"default": (1, "cup")}) ,
+ "vegetable broth" :Substitute(canreplace=["chicken broth", "beef broth"],quantity={"default": (1, "cup")}) ,
+ "veggie meatballs" :Substitute(canreplace=["meatballs", "ground beef"],quantity={"default": (60, "gram")}),
+ },
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
 3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
 4:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
@@ -213,6 +228,15 @@ substitute_map= {
 	"cotija cheese": Substitute(["cheese"],{},{"default":(.25, "cup")},{})},
 "seasoning": {} #to mexican
 }
+
+
+
+
+
+
+
+
+
 
 """transformations_display = { 0: "None",
 					1: "To vegetarian", # not vegetarian
