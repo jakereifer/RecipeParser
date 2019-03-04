@@ -14,9 +14,11 @@ class Recipe(object):
 	categories = { 1: [],
 					2: [],
 					3: [],
-					4: []}
+					4: [],
+					5: [],
+					"seasoning": []}
 
-	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: []}):
+	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: [], 5: [],"seasoning": []}):
 		self.name = name
 		self.ingredients = ingredients
 		self.steps = steps

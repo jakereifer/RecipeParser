@@ -185,7 +185,18 @@ ingredients_kb = [
 	Ingredient(name="brown rice", tags=[3]),
 	Ingredient(name="butter", tags=[4]),
 	Ingredient(name="buttermilk", tags=[4]),
-	Ingredient(name="cheese", tags=[4])
+	Ingredient(name="cheese", tags=[4]),
+	Ingredient(name="turmeric", tags=["seasoning"]),
+	Ingredient(name="basil", tags=["seasoning"]),
+	Ingredient(name="ginger", tags=["seasoning"]),
+	Ingredient(name="nutmeg", tags=["seasoning"]),
+	Ingredient(name="cinnamon", tags=["seasoning"]),
+	Ingredient(name="curry powder", tags=["seasoning"]),
+	Ingredient(name="cayenne pepper", tags=["seasoning"]),
+	Ingredient(name= "thyme", tags=["seasoning"]),
+	Ingredient(name= "garam masala", tags=["seasoning"]),
+	Ingredient(name= "rosemary", tags=["seasoning"]),
+	Ingredient(name= "sage", tags=["seasoning"])
 ]
 
 substitute_map= {
@@ -193,7 +204,9 @@ substitute_map= {
 	"seitan": Substitute(["beef", "salmon", "lamb"], {},{},{})},
 2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
 3:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})},#from vegetarian to non-vegetarian
-4:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})} #from vegetarian to non-vegetarian
+4:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
+5: {},
+"seasoning": {} #to mexican
 }
 
 """transformations_display = { 0: "None",
@@ -210,7 +223,7 @@ substitute_map= {
 3: healthy
 4: unhealthy"""
 
-cs = [3, 4, 2, 1]
+cs = [3, 4, 2, 1, "seasoning"]
 categories = {}
 
 for c in cs:
@@ -236,7 +249,7 @@ primary_methods = ["cook","bake","serve","barbeque","boil","broil","braise","car
 
 secondary_methods = ["refrigerate","remove", "lift", "arange","add","heat","brown","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
 
-units = ["bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
+units = ["sprig","sprigs","bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
 preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
 

@@ -8,10 +8,13 @@ class Ingredient(object):
 	substitute = {  1: "",
 					2: "",
 					3: "",
-					4: ""}
+					4: "",
+					5: "",
+					"seasoning": ""
+					}
 
 	def __init__(self, name="", quantity=0, measurement="", desc="", prep="",
-		tags=[], substitute={ 1: "", 2: "", 3: "",4: ""}):
+		tags=[], substitute={ 1: "", 2: "", 3: "",4: "", 5: "","seasoning": ""}):
 		self.name = name
 		self.quantity = quantity,
 		self.measurement = measurement
