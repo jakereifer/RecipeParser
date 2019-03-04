@@ -3,7 +3,6 @@ from knowledgebase import *
 
 
 def TransformRecipe(recipe, transform, servings):
-	new_ingr = recipe.ingredients
 	# grab ingredients to change
 	bad_ingredients = recipe.categories[transform]
 	#find substitutes
@@ -32,6 +31,33 @@ def TransformRecipe(recipe, transform, servings):
 					ingredient.measurement = subs_ingr.quantity[ingredient.measurement][1]
 					ingredient.quantity = float(ingredient.quantity) * float(subs_ingr.quantity[ingredient.measurement][0])
 				# quantity
+
+	#for mexican
+	mex_seasonings = ["chili powder", "garlic powder", "cumin", "onion powder", "paprika", "oregano"]
+	if transform == 5:
+		for ingredient in recipe.ingredients:
+			if ingredient.tags:
+				print("Ingr: ", ingredient.name, "tags: ", ingredient.tags)
+			if "seasoning" in ingredient.tags:
+				if len(mex_seasonings) > 0:
+					ingredient.name = mex_seasonings.pop(0)
+					if not ingredient.measurement:
+						ingredient.measurement = "teaspoon"
+						ingredient.quantity = 1.0
+	new_ingredients = []
+	while len(mex_seasonings) > 0:
+		new_ingr = Ingredient(mex_seasonings.pop(0), 1.0, "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})
+		new_ingredients.append(new_ingr)
+	recipe.ingredients = recipe.ingredients + new_ingredients
+	s = Step()
+	s.text = "sprinkle seasoning on top of dish"
+	s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
+	s.time = ""
+	s.methods = ["sprinkle"]
+	s.tools = []
+	recipe.steps.append(s)
+
+
 
 
 

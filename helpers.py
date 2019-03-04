@@ -15,16 +15,16 @@ transformations_display = { 0: "None",
 					2: "From vegetarian", # vegetarian
 					3: "From healthy", # healthy
 					4: "To healthy", # unhealthy
-					5: "To cuisine",
-					6: "From cuisine" }
+					5: "To mexican",
+					}
 
 transformations = { 0: "NONE",
 					1: "from not vegetarian",
 					2: "from vegetarian",
 					3: "from unhealthy",
 					4: "from healthy", 
-					5: "from from cuisine",
-					6: "from cuisine" }
+					5: "from not mexican",
+					}
 
 def validatePageLink(err=False):
 	if err:
