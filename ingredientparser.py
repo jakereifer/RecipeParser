@@ -87,12 +87,12 @@ def parseIngredient(i):
 	for pd in prep_dividers:
 		if pd in right_side:
 			if len(right_side.split(pd)) > 2:
-				print(right_side.split(pd))
+				# print(right_side.split(pd))
 				ingredient.preparation = ", ".join(right_side.split(pd)[2:]).strip()
-				print("THIS: ", "".join(right_side.split(pd)[0:2]).strip())
+				# print("THIS: ", "".join(right_side.split(pd)[0:2]).strip())
 				ingredient.name = "".join(right_side.split(pd)[0:2]).strip()
 				right_side = ingredient.name
-				print("name ", ingredient.name)
+				# print("name ", ingredient.name)
 			else:
 				ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
 				ingredient.name = right_side.split(pd)[0].strip()
