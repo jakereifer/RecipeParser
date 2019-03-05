@@ -12,16 +12,18 @@ class Ingredient(object):
 					5: "",
 					"seasoning": ""
 					}
+	changed = False
 
 	def __init__(self, name="", quantity=0, measurement="", desc="", prep="",
 		tags=[], substitute={ 1: "", 2: "", 3: "",4: "", 5: "","seasoning": ""}):
 		self.name = name
-		self.quantity = quantity,
+		self.quantity = quantity
 		self.measurement = measurement
 		self.descriptor = desc
 		self.preparation = prep
 		self.tags = tags
 		self.substitute = substitute
+		self.changed = False
 
 	# Print the ingredient in a human friendly manner
 	def printIngredient(self):

@@ -1,13 +1,16 @@
 from RecipeClass import *
 from knowledgebase import *
 from helpers import *
+from ingredientparser import *
 
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
 	bad_ingredients = recipe.categories[transform]
 	#find substitutes
+	made_sub = False
 	subs = {}
 	for bad_ingredient in bad_ingredients:
+		# print("BAD INGR NAME ", bad_ingredient.name)
 		subs[bad_ingredient.name] = bad_ingredient.substitute[transform]
 	for step in recipe.steps:
 		for i in range(0,len(step.ingredients)):
@@ -20,10 +23,12 @@ def TransformRecipe(recipe, transform, servings):
 	for ingredient in recipe.ingredients:
 		for k in subs:
 			if k == ingredient.name:
+				made_sub = True
 				ingredient.name = subs[k]
+				ingredient.changed = True
 				ingredient.preparation = ""
 				subs_ingr = replacement_dict[subs[k]]
-				print(subs_ingr.quantity)
+				# print(subs_ingr.quantity)
 				if not ingredient.measurement or not ingredient.measurement in subs_ingr.quantity:
 					ingredient.measurement = subs_ingr.quantity["default"][1]
 					ingredient.quantity = float(subs_ingr.quantity["default"][0]) * float(servings)
@@ -42,7 +47,6 @@ def TransformRecipe(recipe, transform, servings):
 				found = True
 		if not found:
 			mex_seasonings.append(seasoning)
-	print("MEX: ", mex_seasonings)
 	if transform == 5:
 		for ingredient in recipe.ingredients:
 			# if ingredient.tags:
@@ -52,24 +56,85 @@ def TransformRecipe(recipe, transform, servings):
 					ingredient.name = mex_seasonings.pop(0)
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
-						ingredient.quantity = float(1.0)
-	new_ingredients = []
-	while len(mex_seasonings) > 0:
-		new_ingr = Ingredient(mex_seasonings.pop(0), 1.0, "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: ""})
-		new_ingredients.append(new_ingr)
-	if not new_ingredients == []: 
-		print("new ingr: ", new_ingredients)
-		recipe.ingredients = recipe.ingredients + new_ingredients
-		s = Step()
-		s.text = "sprinkle seasoning on top of dish"
-		s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
-		s.time = ""
-		s.methods = ["sprinkle"]
-		s.tools = []
-		recipe.steps.append(s)
-	else:
-		print("no extra")
+						ingredient.quantity = parse_amount("1")
+		new_ingredients = []
+		while len(mex_seasonings) > 0:
+			new_ingr = Ingredient(mex_seasonings.pop(0), parse_amount("1"), "teaspoon", "","",[],{ 1: "", 2: "", 3: "",4: "", 5: ""})
+			new_ingredients.append(new_ingr)
+		if not new_ingredients == []: 
+			recipe.ingredients = recipe.ingredients + new_ingredients
+			s = Step()
+			s.text = "sprinkle seasoning on top of dish"
+			s.ingredients = [new_ingr.name for new_ingr in new_ingredients]
+			s.time = ""
+			s.methods = ["sprinkle"]
+			s.tools = []
+			recipe.steps.append(s)
+	#for unhealthy
+	if transform == 3 and not made_sub:
+		#bacon
+		bacon = Ingredient("bacon strips",float(servings) * 2, "","","",[],{ 1: "", 2: "", 3: "",4: "", 5: ""})
+		#powedered sugar
+		sugar = Ingredient("powdered sugar",float(servings) * 1, "teaspoon", "", "", [], { 1: "", 2: "", 3: "",4: "", 5: ""})
+		recipe.ingredients = recipe.ingredients + [bacon,sugar]
+		#creating the steps 
+		cookBacon = Step()
+		cookBacon.text = "cook bacon on pan for fifteen minutes"
+		cookBacon.ingredients = [bacon.name]
+		cookBacon.time = "fifteen minutes"
+		cookBacon.methods = ["cook"]
+		cookBacon.tools = ["pan"]
+		recipe.steps.append(cookBacon)
 
+		sliceBacon = Step()
+		sliceBacon.text = "slice bacon into bits"
+		sliceBacon.ingredients = [bacon.name]
+		sliceBacon.time = ""
+		sliceBacon.methods = ["slice"]
+		sliceBacon.tools = ["knife"]
+		recipe.steps.append(sliceBacon)
+
+		spreadUnhealthy = Step()
+		spreadUnhealthy.text = "generously sprinkle bacon bits and powdered sugar over dish"
+		spreadUnhealthy.ingredients = [bacon.name, sugar.name]
+		spreadUnhealthy.time = ""
+		spreadUnhealthy.methods = ["sprinkle"]
+		spreadUnhealthy.tools = []
+		
+		#adding the steps to the recipe
+		recipe.steps.append(spreadUnhealthy)
+	if transform == 2 and not made_sub:
+		chicken = Ingredient("chicken breast",float(servings), "","","",[],{ 1: "", 2: "", 3: "",4: "", 5: ""})
+		recipe.ingredients.append(chicken)
+
+		grillChicken= Step()
+		grillChicken.text = "cook chicken on pan for 10 to 15 minutes"
+		grillChicken.ingredients = [chicken.name]
+		grillChicken.time = "10 to 15 minutes"
+		grillChicken.methods = ["cook"]
+		grillChicken.tools = ["pan"]
+		recipe.steps.append(grillChicken)
+
+		sliceChicken= Step()
+		sliceChicken.text = "slice chicken into small pieces and scatter over dish"
+		sliceChicken.ingredients = [chicken.name]
+		sliceChicken.time = ""
+		sliceChicken.methods = ["slice", "scatter"]
+		sliceChicken.tools = ["knife"]
+		recipe.steps.append(sliceChicken)
+
+	name_add_ons = { 1: "(Vegetarian)" ,
+	2: "(Non Vegetarian)",
+	3: "(Unhealthy)",
+	4: "(Healthy)",
+	5: "(Mexican)",
+	}
+
+	recipe.name = recipe.name + " " + name_add_ons[transform]
+
+	return removeDuplicates(recipe)
+	
+		
 
 
 
