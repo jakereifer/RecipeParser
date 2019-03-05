@@ -10,7 +10,7 @@ def TransformRecipe(recipe, transform, servings):
 	made_sub = False
 	subs = {}
 	for bad_ingredient in bad_ingredients:
-		print("BAD INGR NAME ", bad_ingredient.name)
+		# print("BAD INGR NAME ", bad_ingredient.name)
 		subs[bad_ingredient.name] = bad_ingredient.substitute[transform]
 	for step in recipe.steps:
 		for i in range(0,len(step.ingredients)):
@@ -25,9 +25,10 @@ def TransformRecipe(recipe, transform, servings):
 			if k == ingredient.name:
 				made_sub = True
 				ingredient.name = subs[k]
+				ingredient.changed = True
 				ingredient.preparation = ""
 				subs_ingr = replacement_dict[subs[k]]
-				print(subs_ingr.quantity)
+				# print(subs_ingr.quantity)
 				if not ingredient.measurement or not ingredient.measurement in subs_ingr.quantity:
 					ingredient.measurement = subs_ingr.quantity["default"][1]
 					ingredient.quantity = float(subs_ingr.quantity["default"][0]) * float(servings)
@@ -100,11 +101,11 @@ def TransformRecipe(recipe, transform, servings):
 		spreadUnhealthy.methods = ["sprinkle"]
 		spreadUnhealthy.tools = []
 		
+		#adding the steps to the recipe
 		recipe.steps.append(spreadUnhealthy)
 
-
-		#adding the steps to the recipe
-
+	removeDuplicates(recipe)
+		
 
 
 
