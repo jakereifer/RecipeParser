@@ -69,7 +69,7 @@ recipe.s_methods = list(set([method for s in recipe.steps for method in s.method
 
 recipe.sortIngredientsIntoCategories() 
 recipe.printRecipe()
-print("")
+print("_____________________________________")
 print("")
 print("")
 print("")

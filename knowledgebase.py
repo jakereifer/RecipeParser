@@ -201,7 +201,7 @@ ingredients_kb = [
 	Ingredient(name= "italian seasoning", tags=["seasoning"]),
 	Ingredient(name= "filet mignon steak", tags=[1, 4]),
 	Ingredient(name= "olive oil", tags=[3]),
-	Ingredient(name= "vegetarian burger", tags=[2]),
+	Ingredient(name= "vegetarian burger", tags=[2,3]),
 	
 ]
 
