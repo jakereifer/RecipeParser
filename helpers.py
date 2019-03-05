@@ -57,7 +57,8 @@ def removeDuplicates(recipe):
 	garbage_duplicates = []
 	duplicate_indices = []
 	original_amounts = {}
-	for i in range(0,len(recipe.ingredients)):
+	l = len(recipe.ingredients)
+	for i in range(0,l):
 		ingr_i = recipe.ingredients[i]
 		if i in garbage_duplicates:
 			continue
@@ -86,7 +87,7 @@ def removeDuplicates(recipe):
 							original_amounts[j] = ingr_j.quantity
 							ingr_j.quantity = ingr_j.quantity * 2
 	#only add the unique ones
-	for i in range(0,len(recipe.ingredients)):
+	for i in range(0,l):
 		if not i in garbage_duplicates:
 			new_ingredients.append(recipe.ingredients[i])
 	recipe.ingredients = new_ingredients

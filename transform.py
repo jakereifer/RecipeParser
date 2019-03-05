@@ -103,8 +103,37 @@ def TransformRecipe(recipe, transform, servings):
 		
 		#adding the steps to the recipe
 		recipe.steps.append(spreadUnhealthy)
+	if transform == 2 and not made_sub:
+		chicken = Ingredient("chicken breast",float(servings), "","","",[],{ 1: "", 2: "", 3: "",4: "", 5: ""})
+		recipe.ingredients.append(chicken)
 
-	removeDuplicates(recipe)
+		grillChicken= Step()
+		grillChicken.text = "cook chicken on pan for 10 to 15 minutes"
+		grillChicken.ingredients = [chicken.name]
+		grillChicken.time = "10 to 15 minutes"
+		grillChicken.methods = ["cook"]
+		grillChicken.tools = ["pan"]
+		recipe.steps.append(grillChicken)
+
+		sliceChicken= Step()
+		sliceChicken.text = "slice chicken into small pieces and scatter over dish"
+		sliceChicken.ingredients = [chicken.name]
+		sliceChicken.time = ""
+		sliceChicken.methods = ["slice", "scatter"]
+		sliceChicken.tools = ["knife"]
+		recipe.steps.append(sliceChicken)
+
+	name_add_ons = { 1: "(Vegetarian)" ,
+	2: "(Non Vegetarian)",
+	3: "(Unhealthy)",
+	4: "(Healthy)",
+	5: "(Mexican)",
+	}
+
+	recipe.name = recipe.name + " " + name_add_ons[transform]
+
+	return removeDuplicates(recipe)
+	
 		
 
 

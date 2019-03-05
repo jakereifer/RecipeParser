@@ -145,7 +145,7 @@ ingredients_kb = [
 	Ingredient(name="chik'n", tags=[2, 3]),
 	Ingredient(name="condensed milk", tags=[4]),
 	Ingredient(name="cream", tags=[4]),
-	Ingredient(name="egg", tags=[2, 3]),
+	Ingredient(name="egg", tags=[ 3]),
 	Ingredient(name="egg white", tags=[2, 3]),
 	Ingredient(name="egg yolk", tags=[2, 4]),
 	Ingredient(name="falafel", tags=[2, 3]),
@@ -201,6 +201,7 @@ ingredients_kb = [
 	Ingredient(name= "italian seasoning", tags=["seasoning"]),
 	Ingredient(name= "filet mignon steak", tags=[1, 4]),
 	Ingredient(name= "olive oil", tags=[3]),
+	Ingredient(name= "vegetarian burger", tags=[2]),
 	
 ]
 
@@ -220,9 +221,29 @@ substitute_map= {
  "vegetable broth" :Substitute(canreplace=["chicken broth", "beef broth"],quantity={"default": (1, "cup")}) ,
  "veggie meatballs" :Substitute(canreplace=["meatballs", "ground beef"],quantity={"default": (60, "gram")}),
  },
-2:{"ground beef": Substitute(["tofu", "seitan"],{},{},{})}, #from vegetarian to non-vegetarian
-3:{"butter": Substitute(["olive oil"],quantity={"default": (1, "cup")})},
-4:{}, #from vegetarian to non-vegetarian
+2:{"bacon": Substitute(canreplace=["veggie bacon strips"], quantity={"default":(15,"grams")}) ,
+"beef": Substitute(canreplace=["seitan", "tempeh"], quantity={"default":(4,"ounces")}) ,
+"burger": Substitute(canreplace=["veggie burger", "vegetarian burger"], quantity={"default":(1,"count")}) ,
+"chicken": Substitute(canreplace=["chik'n", "tofu"], quantity={"default":(4,"ounces")}) ,
+"chicken broth": Substitute(canreplace=["vegetable broth"], quantity={"default":(1,"cup")}) ,
+"chicken stock": Substitute(canreplace=["vegetable stock"], quantity={"default":(1,"cup")}) ,
+"ground beef": Substitute(canreplace=["texturized vegetable protein (tvp)"], quantity={"default":(4,"ounces")}) ,
+"hot dog": Substitute(canreplace=["veggie dog"], quantity={"default":(1,"count")}) ,
+"meatballs": Substitute(canreplace=["veggie meatballs"], quantity={"default":(3,"ounces")}) ,
+"turkey": Substitute(canreplace=["tofurky"], quantity={"default":(3.5,"ounces")}) 
+ }, 
+3:{"butter": Substitute(["olive oil"],quantity={"default": (1, "ounce")})},
+4:{"chicken": Substitute(canreplace=["ground beef", "beef","steak","venison","veal"], quantity={"default": (4,"ounce")}),
+"milk": Substitute(canreplace=["cream", "condensed milk", "buttermilk"], quantity={"default": (.25, "cup")}),
+"margarine": Substitute(canreplace=["butter"], quantity={"default": (1, "tablespoon")}),
+"stevia": Substitute(canreplace=["sugar", "brown sugar"], quantity={"default": (1, "teaspoon")}),
+"brown rice": Substitute(canreplace=["white rice"], quantity={"default": (.125, "cup")}),
+"whole wheat flour": Substitute(canreplace=["flour", "all-purpose flour"], quantity={"default": (.125, "cup")}),
+"turkey": Substitute(canreplace=["pork"], quantity={"default": (3.5, "ounces")}),
+"whole wheat bread": Substitute(canreplace=["bread"], quantity={"default": (2, "count")}),
+'whole wheat pasta': Substitute(canreplace=["pasta"], quantity={"default": (.5, "cup")}),
+"turkey meatballs": Substitute(canreplace=["meatballs"], quantity={"default": (4, "count")})
+}, 
 5: {"jalapeno": Substitute(["green pepper", "bell pepper", "yellow pepper"],{},{"default":(5,"count") },{}),
 	"lime juice": Substitute(["lemon juice", "lemon zest"],{},{"default":(1,"teaspoon")},{}), 
 	"salsa": Substitute(["barbeque sauce", "marinara sauce", "pesto"],{},{"default":(.5,"cup")},{}),
@@ -279,7 +300,7 @@ tools = ["refrigerator","container", "baking sheet","blender","bowl","box grater
 
 primary_methods = ["cook","bake","serve","barbeque","boil","broil","braise","carmelize","flambe","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté" "simmer","stir fry","stew","sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray"]
 
-secondary_methods = ["refrigerate","remove", "lift", "arange","add","heat","brown","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
+secondary_methods = ["refrigerate","remove", "lift", "arange","add","heat","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
 
 units = ["sprig","sprigs","bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
