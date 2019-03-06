@@ -68,21 +68,15 @@ recipe.p_methods = list(set([method for s in recipe.steps for method in s.method
 recipe.s_methods = list(set([method for s in recipe.steps for method in s.methods if method in knowledgebase.secondary_methods and method not in recipe.s_methods]))
 
 recipe.sortIngredientsIntoCategories() 
-# recipe.printRecipe()
+recipe.printRecipe()
 
 print("\n\n\n\n\n\n")
-# if transformation != 0:
-# 	print("_____________________________________")
-# 	print("")
-# 	print("")
-# 	print("")
-# 	print("")
-# 	print("")
-# 	print("")
-# 	print("After Transformation")
-# 	print("")
-recipe = TransformRecipe(recipe,transformation, servings)
-recipe.printRecipe()
+if transformation != 0:
+	print("_____________________________________")
+	print("After Transformation")
+	print("")
+	recipe = TransformRecipe(recipe,transformation, servings)
+	recipe.printRecipe()
 
 # get list of Tools, Methods (primary and secondary)
 # scraped_tools = []
