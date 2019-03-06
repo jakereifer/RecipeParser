@@ -38,7 +38,7 @@ class Ingredient(object):
 			print("	Descriptor: ", self.descriptor)
 		if self.preparation:
 			print("	Preparation: ", self.preparation)
-		if self.tags:
-			print("Tags: ", self.tags)
-		if self.substitute:
-			print("Substitute: ", self.substitute)
+		# if self.tags:
+		# 	print("Tags: ", self.tags)
+		# if self.substitute:
+		# 	print("Substitute: ", self.substitute)
