@@ -3,11 +3,12 @@ from knowledgebase import *
 from helpers import *
 from ingredientparser import *
 
-def transformStep(step, bad, subs):
+def transformStep(step, bad, sub):
 	words = step.clean_text.split()
 	locations = step.i_locs
-	sub = subs[bad]
 	sub_length = len(sub.split())
+	if not bad in locations:
+		return
 	locations_bad = locations[bad]
 	while len(locations_bad) > 0:
 		tup = locations_bad.pop(0)
@@ -47,7 +48,7 @@ def TransformRecipe(recipe, transform, servings):
 		for i in range(0,len(step.ingredients)):
 			for bad_ingredient in bad_ingredients:
 				if step.ingredients[i] == bad_ingredient.name:
-					transformStep(step, bad_ingredient.name, subs)
+					transformStep(step, bad_ingredient.name, subs[bad_ingredient.name])
 					step.ingredients[i] = subs[bad_ingredient.name]
 		step.text = step.clean_text
 	# Quantity and ingredient
@@ -85,7 +86,13 @@ def TransformRecipe(recipe, transform, servings):
 			# print("Ingr: ", ingredient.name, "tags: ", ingredient.tags)
 			if "seasoning" in ingredient.tags:
 				if len(mex_seasonings) > 0:
-					ingredient.name = mex_seasonings.pop(0)
+					ms = mex_seasonings.pop(0)
+					for step in recipe.steps:
+						transformStep(step, ingredient.name, ms)
+						for j in range(0,len(step.ingredients)):
+							if step.ingredients[j] == ingredient.name:
+								step.ingredients[j] = ms
+					ingredient.name = ms
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
 						ingredient.quantity = parse_amount("1")
