@@ -47,14 +47,13 @@ def parseSteps(scraped_steps, scraped_ingredients):
 		currStep = Step()
 		currStep.text = step
 		cleanStep = re.sub(r'[^\w\s]','',step)
+		print(cleanStep)
 		# run each function
 		currStep.ingredients = findIngredients(cleanStep, ingredientNames)
 		currStep.time = findTimes(cleanStep)
 		currStep.methods = findMethods(cleanStep)
 		currStep.tools = findTools(cleanStep)
 		stepsList.append(currStep)
-
-		
 	# return Dictionary
 	return stepsList
 
