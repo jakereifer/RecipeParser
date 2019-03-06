@@ -93,16 +93,16 @@ def TransformRecipe(recipe, transform, servings):
 						for j in range(0,len(step.ingredients)):
 							if step.ingredients[j] == ingredient.name:
 								step.ingredients[j] = ms
-					ingredient.name = ms
-					ingredient.preparation = ""
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
 						ingredient.quantity = parse_amount("1")
 					for step in recipe.steps:
 						# transformStep(step, ingredient.name, ms)
 						for j in range(0,len(step.ingredients)):
-							if step.ingredients[j] == oldname:
-								step.ingredients[j] = ingredient.name
+							if step.ingredients[j] == ingredient.name:
+								step.ingredients[j] = ms
+					ingredient.name = ms
+					ingredient.preparation = ""
 
 		new_ingredients = []
 		while len(mex_seasonings) > 0:
