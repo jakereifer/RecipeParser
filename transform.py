@@ -3,6 +3,38 @@ from knowledgebase import *
 from helpers import *
 from ingredientparser import *
 
+def transformStep(step, bad, sub):
+	# print("step.clean_text", step.clean_text)
+	words = step.clean_text.split()
+	locations = step.i_locs
+	# print("locations: ", locations)
+	sub_length = len(sub.split())
+	if not bad in locations:
+		return
+	locations_bad = locations[bad]
+	while len(locations_bad) > 0:
+		tup = locations_bad.pop(0)
+		start = tup[0]
+		end = tup[1]
+		#insert
+		lhs = words[:start]
+		rhs = words[end+1:]
+		step.clean_text = " ".join(lhs + sub.split() + rhs)
+		words = step.clean_text.split()
+		#adjust other positions
+		for key in locations:
+			j = 0
+			while j < len(locations[key]):
+				t = locations[key][j]
+				if t[0] == start and t[1] == end:
+					locations[key].pop(j)
+				else:
+					if t[0] > start:
+						t0 = t[0] + (len(sub.split()) - (end-start + 1))
+						t1 = t[1] + (len(sub.split()) - (end-start + 1))
+						locations[key][j] = (t0,t1)
+					j = j + 1
+
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
 	bad_ingredients = recipe.categories[transform]
@@ -16,8 +48,9 @@ def TransformRecipe(recipe, transform, servings):
 		for i in range(0,len(step.ingredients)):
 			for bad_ingredient in bad_ingredients:
 				if step.ingredients[i] == bad_ingredient.name:
+					transformStep(step, bad_ingredient.name, subs[bad_ingredient.name])
 					step.ingredients[i] = subs[bad_ingredient.name]
-
+		step.text = step.clean_text
 	# Quantity and ingredient
 	replacement_dict = substitute_map[transform] 
 	for ingredient in recipe.ingredients:
@@ -53,8 +86,15 @@ def TransformRecipe(recipe, transform, servings):
 			# print("Ingr: ", ingredient.name, "tags: ", ingredient.tags)
 			if "seasoning" in ingredient.tags:
 				if len(mex_seasonings) > 0:
-					oldname = ingredient.name
-					ingredient.name = mex_seasonings.pop(0)
+					ms = mex_seasonings.pop(0)
+					for step in recipe.steps:
+						transformStep(step, ingredient.name, ms)
+						step.text = step.clean_text
+						for j in range(0,len(step.ingredients)):
+							if step.ingredients[j] == ingredient.name:
+								step.ingredients[j] = ms
+					ingredient.name = ms
+					ingredient.preparation = ""
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
 						ingredient.quantity = parse_amount("1")
@@ -86,7 +126,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.ingredients = recipe.ingredients + [bacon,sugar]
 		#creating the steps 
 		cookBacon = Step()
-		cookBacon.text = "cook bacon on pan for fifteen minutes"
+		cookBacon.text = "Cook bacon on pan for fifteen minutes"
 		cookBacon.ingredients = [bacon.name]
 		cookBacon.time = "fifteen minutes"
 		cookBacon.methods = ["cook"]
@@ -94,7 +134,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(cookBacon)
 
 		sliceBacon = Step()
-		sliceBacon.text = "slice bacon into bits"
+		sliceBacon.text = "Slice bacon into bits"
 		sliceBacon.ingredients = [bacon.name]
 		sliceBacon.time = ""
 		sliceBacon.methods = ["slice"]
@@ -102,7 +142,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(sliceBacon)
 
 		spreadUnhealthy = Step()
-		spreadUnhealthy.text = "generously sprinkle bacon bits and powdered sugar over dish"
+		spreadUnhealthy.text = "Generously sprinkle bacon bits and powdered sugar over dish"
 		spreadUnhealthy.ingredients = [bacon.name, sugar.name]
 		spreadUnhealthy.time = ""
 		spreadUnhealthy.methods = ["sprinkle"]
@@ -115,7 +155,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.ingredients.append(chicken)
 
 		grillChicken= Step()
-		grillChicken.text = "cook chicken on pan for 10 to 15 minutes"
+		grillChicken.text = "Cook chicken on pan for 10 to 15 minutes"
 		grillChicken.ingredients = [chicken.name]
 		grillChicken.time = "10 to 15 minutes"
 		grillChicken.methods = ["cook"]
@@ -123,7 +163,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(grillChicken)
 
 		sliceChicken= Step()
-		sliceChicken.text = "slice chicken into small pieces and scatter over dish"
+		sliceChicken.text = "Slice chicken into small pieces and scatter over dish"
 		sliceChicken.ingredients = [chicken.name]
 		sliceChicken.time = ""
 		sliceChicken.methods = ["slice", "scatter"]

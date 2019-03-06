@@ -145,7 +145,7 @@ ingredients_kb = [
 	Ingredient(name="chik'n", tags=[2, 3]),
 	Ingredient(name="condensed milk", tags=[4]),
 	Ingredient(name="cream", tags=[4]),
-	Ingredient(name="egg", tags=[ 3]),
+	Ingredient(name="egg", tags=[]),
 	Ingredient(name="egg white", tags=[2, 3]),
 	Ingredient(name="egg yolk", tags=[2, 4]),
 	Ingredient(name="falafel", tags=[2, 3]),
@@ -185,7 +185,7 @@ ingredients_kb = [
 	Ingredient(name="brown rice", tags=[3]),
 	Ingredient(name="butter", tags=[4]),
 	Ingredient(name="buttermilk", tags=[4]),
-	Ingredient(name="cheese", tags=[4,5]),
+	Ingredient(name="cheese", tags=[5]),
 	Ingredient(name="turmeric", tags=["seasoning"]),
 	Ingredient(name="basil", tags=["seasoning"]),
 	Ingredient(name="ginger", tags=["seasoning"]),
@@ -220,6 +220,7 @@ substitute_map= {
  "vegetable stock" :Substitute(canreplace=["chicken stock"],quantity={"default": (1, "cup")}) ,
  "vegetable broth" :Substitute(canreplace=["chicken broth", "beef broth"],quantity={"default": (1, "cup")}) ,
  "veggie meatballs" :Substitute(canreplace=["meatballs", "ground beef"],quantity={"default": (60, "gram")}),
+ "veggie sausage" :Substitute(canreplace=["sausage"],quantity={"default": (.125, "pound")})
  },
 2:{"bacon": Substitute(canreplace=["veggie bacon strips"], quantity={"default":(15,"grams")}) ,
 "beef": Substitute(canreplace=["seitan", "tempeh"], quantity={"default":(4,"ounces")}) ,
@@ -262,7 +263,8 @@ substitute_map= {
 "turkey": Substitute(canreplace=["pork"], quantity={"default": (3.5, "ounces")}),
 "whole wheat bread": Substitute(canreplace=["bread"], quantity={"default": (2, "count")}),
 'whole wheat pasta': Substitute(canreplace=["pasta"], quantity={"default": (.5, "cup")}),
-"turkey meatballs": Substitute(canreplace=["meatballs"], quantity={"default": (4, "count")})
+"turkey meatballs": Substitute(canreplace=["meatballs"], quantity={"default": (4, "count")}),
+"veggie sausage" :Substitute(canreplace=["sausage"],quantity={"default": (.125, "pound")})
 }, 
 5: {"jalapeno": Substitute(["green pepper", "bell pepper", "yellow pepper"],{},{"default":(5,"count") },{}),
 	"lime juice": Substitute(["lemon juice", "lemon zest"],{},{"default":(1,"teaspoon")},{}), 

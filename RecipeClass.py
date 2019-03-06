@@ -42,10 +42,10 @@ class Recipe(object):
 			print("\nSECONDARY METHODS: ", self.s_methods)
 		if self.tools:
 			print("\nTOOLS: ", self.tools)
-		# if self.categories:
-		# 	print("\nSORTED INGREDIENTS:")
-		# 	for cat in self.categories.keys():
-		# 		print(str(cat) + ": ", [i.name for i in self.categories[cat]])
+		if self.categories:
+			print("\nSORTED INGREDIENTS:")
+			for cat in self.categories.keys():
+				print(str(cat) + ": ", [i.name for i in self.categories[cat]])
 		if self.ingredients:
 			print("\nINGREDIENTS:")
 			for i in self.ingredients:

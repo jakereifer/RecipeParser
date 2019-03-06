@@ -31,14 +31,14 @@ class Ingredient(object):
 		if self.name:
 			print("Name: ", self.name)
 		if self.quantity:
-			print("Quantity: ", self.quantity)
+			print("	Quantity: ", self.quantity)
 		if self.measurement:
-			print("Measurement: ", self.measurement)
+			print("	Measurement: ", self.measurement)
 		if self.descriptor:
-			print("Descriptor: ", self.descriptor)
+			print("	Descriptor: ", self.descriptor)
 		if self.preparation:
-			print("Preparation: ", self.preparation)
-		if self.tags:
-			print("Tags: ", self.tags)
-		if self.substitute:
-			print("Substitute: ", self.substitute)
+			print("	Preparation: ", self.preparation)
+		# if self.tags:
+		# 	print("Tags: ", self.tags)
+		# if self.substitute:
+		# 	print("Substitute: ", self.substitute)

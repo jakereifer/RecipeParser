@@ -69,18 +69,14 @@ recipe.s_methods = list(set([method for s in recipe.steps for method in s.method
 
 recipe.sortIngredientsIntoCategories() 
 recipe.printRecipe()
-print("_____________________________________")
-print("")
-print("")
-print("")
-print("")
-print("")
 
+print("\n\n\n\n\n\n")
 if transformation != 0:
-	print("")
+	print("_____________________________________")
 	print("After Transformation")
 	print("")
 	recipe = TransformRecipe(recipe,transformation, servings)
+	recipe.printRecipe()
 
 # get list of Tools, Methods (primary and secondary)
 # scraped_tools = []
@@ -108,4 +104,3 @@ if transformation != 0:
 # print("           ")
 # print(recipe.s_methods)
 
-recipe.printRecipe()
