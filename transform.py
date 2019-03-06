@@ -175,6 +175,7 @@ def TransformRecipe(recipe, transform, servings):
 	3: "(Unhealthy)",
 	4: "(Healthy)",
 	5: "(Mexican)",
+	6: "(Kosher)"
 	}
 
 	recipe.name = recipe.name + " " + name_add_ons[transform]

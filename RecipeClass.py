@@ -16,9 +16,12 @@ class Recipe(object):
 					3: [],
 					4: [],
 					5: [],
-					"seasoning": []}
+					"seasoning": [],
+					"6": [],
+					"dairy": [],
+					}
 
-	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: [], 5: [],"seasoning": []}):
+	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: [], 5: [],"seasoning": [],"6": [],"prepend": []}):
 		self.name = name
 		self.ingredients = ingredients
 		self.steps = steps
@@ -42,10 +45,10 @@ class Recipe(object):
 			print("\nSECONDARY METHODS: ", self.s_methods)
 		if self.tools:
 			print("\nTOOLS: ", self.tools)
-		if self.categories:
-			print("\nSORTED INGREDIENTS:")
-			for cat in self.categories.keys():
-				print(str(cat) + ": ", [i.name for i in self.categories[cat]])
+		# if self.categories:
+		# 	print("\nSORTED INGREDIENTS:")
+		# 	for cat in self.categories.keys():
+		# 		print(str(cat) + ": ", [i.name for i in self.categories[cat]])
 		if self.ingredients:
 			print("\nINGREDIENTS:")
 			for i in self.ingredients:

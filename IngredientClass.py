@@ -10,12 +10,14 @@ class Ingredient(object):
 					3: "",
 					4: "",
 					5: "",
-					"seasoning": ""
+					"seasoning": "",
+					6: "",
+					"dairy": "",
 					}
 	changed = False
 
 	def __init__(self, name="", quantity=0, measurement="", desc="", prep="",
-		tags=[], substitute={ 1: "", 2: "", 3: "",4: "", 5: "","seasoning": ""}):
+		tags=[], substitute={ 1: "", 2: "", 3: "",4: "", 5: "","seasoning": "", "dairy": "", 6: ""}):
 		self.name = name
 		self.quantity = quantity
 		self.measurement = measurement

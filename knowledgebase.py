@@ -270,7 +270,9 @@ substitute_map= {
 	"lime juice": Substitute(["lemon juice", "lemon zest"],{},{"default":(1,"teaspoon")},{}), 
 	"salsa": Substitute(["barbeque sauce", "marinara sauce", "pesto"],{},{"default":(.5,"cup")},{}),
 	"cotija cheese": Substitute(["cheese"],{},{"default":(.25, "cup")},{})},
-"seasoning": {} #to mexican
+"seasoning": {}, #to mexican
+"dairy": {},
+6: {}
 }
 
 
@@ -298,7 +300,7 @@ substitute_map= {
 # 4: unhealthy
 # """
 
-cs = [3, 4, 2, 1, "seasoning",5]
+cs = [3, 4, 2, 1, "seasoning",5, 6, "dairy"]
 categories = {}
 
 for c in cs:
