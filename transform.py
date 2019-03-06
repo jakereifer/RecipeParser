@@ -3,6 +3,37 @@ from knowledgebase import *
 from helpers import *
 from ingredientparser import *
 
+def transformStep(step, bad, subs):
+	words = step.clean_text.split()
+	locations = step.i_locs
+	sub = subs[bad]
+	sub_length = len(sub.split())
+	locations_bad = locations[bad]
+	while len(locations_bad) > 0:
+		tup = locations_bad.pop(0)
+		start = tup[0]
+		end = tup[1]
+		#insert
+		lhs = words[:start]
+		rhs = words[end+1:]
+		step.clean_text = " ".join(lhs + sub.split() + rhs)
+		print(step.clean_text)
+		print(locations)
+		words = step.clean_text.split()
+		#adjust other positions
+		for key in locations:
+			j = 0
+			while j < len(locations[key]):
+				t = locations[key][j]
+				if t[0] == start and t[1] == end:
+					locations[key].pop(j)
+				else:
+					if t[0] > start:
+						t0 = t[0] + (len(sub.split()) - (end-start + 1))
+						t1 = t[1] + (len(sub.split()) - (end-start + 1))
+						t = (t0,t1)
+					j = j + 1
+
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
 	bad_ingredients = recipe.categories[transform]
@@ -16,8 +47,9 @@ def TransformRecipe(recipe, transform, servings):
 		for i in range(0,len(step.ingredients)):
 			for bad_ingredient in bad_ingredients:
 				if step.ingredients[i] == bad_ingredient.name:
+					transformStep(step, bad_ingredient.name, subs)
 					step.ingredients[i] = subs[bad_ingredient.name]
-
+		step.text = step.clean_text
 	# Quantity and ingredient
 	replacement_dict = substitute_map[transform] 
 	for ingredient in recipe.ingredients:
