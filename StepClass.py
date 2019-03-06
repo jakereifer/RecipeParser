@@ -32,6 +32,8 @@ class Step(object):
 			print("methods: ", self.methods)
 		if self.tools:
 			print("tools: ", self.tools)
+		if self.i_locs:
+			print("i_locs: ", self.i_locs)
 
 
 def parseSteps(scraped_steps, scraped_ingredients):
@@ -49,7 +51,7 @@ def parseSteps(scraped_steps, scraped_ingredients):
 		currStep = Step()
 		currStep.text = step
 		cleanStep = re.sub(r'[^\w\s]','',step)
-		print(cleanStep)
+		# print(cleanStep)
 		currStep.clean_text = cleanStep
 		# run each function
 		currStep.ingredients, currStep.i_locs = findIngredients(cleanStep, ingredientNames)
@@ -280,6 +282,8 @@ def findKeywords(step, listWords):
 	finalIngs = list(set(finalIngs))
 	# print("Step: ",step)
 	# print("finalIngs: ", finalIngs)
+	# print("i_locs: ", i_locs)
+	# print("step: ", step)
 	# print("i_locs: ", i_locs)
 	return finalIngs, i_locs
 
