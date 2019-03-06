@@ -4,19 +4,24 @@ def findKeywords(step, listWords):
 	# stopWords = ['on', 'in', 'to', 'from', 'for', 'al', 'at', 'a', 'so', 'it']
 	finalIngs = []
 	words = step.split()
+	for word in words:
+		word = word.lower()
+	for lw in listWords:
+		lw = lw.lower()
 	i_locs = {}
 	l = len(words)
-	a = 0
+	a = 1
 	while a < l:
-		print("a: ",a)
+		# print("a: ",a, "words[a]: ", words[a])
 		tempIng = []
 		direct = ""
 		for i in listWords:
-			if words[a] in i and not words[a] in sw:
-				tempIng.append(i)
+			if words[a].lower() in i.lower() and not words[a].lower() in sw:
+				tempIng.append(i.lower())
 				if words[a].lower() == i.lower():
 					direct=i
 		tempIng = list(set(tempIng))
+		# print("tempIng: ", tempIng)
 		if len(tempIng) > 1:
 			# end of string check
 			if a == len(words) - 1:
@@ -34,13 +39,13 @@ def findKeywords(step, listWords):
 						else:
 							i_locs[ti] = [(a,a)]
 			else:
-				longerWord = words[a]
+				longerWord = words[a].lower()
 				for b in range(a, len(words)-1):
-					print("b: ",b)
-					longerWord = longerWord + ' ' + words[b+1]
+					# print("b: ",b)
+					longerWord = longerWord + ' ' + words[b+1].lower()
 					newTempIng = []
 					for z in tempIng:
-						if longerWord in z:
+						if longerWord in z.lower():
 							newTempIng.append(z)
 							if longerWord == z.lower():
 								direct=z 
@@ -57,13 +62,13 @@ def findKeywords(step, listWords):
 		else:
 			if len(tempIng) == 1:
 				curr = tempIng[0]
-				print("tempIng[0]", tempIng[0])
+				# print("tempIng[0]", tempIng[0])
 				finalIngs = finalIngs + tempIng
 				end = a
-				longer = words[a]
+				longer = words[a].lower()
 				while end < len(words)-1:
-					print("end", end)
-					longer = longer + ' ' + words[end+1]
+					# print("end", end)
+					longer = longer + ' ' + words[end+1].lower()
 					if not longer in curr:
 						break
 					else:
@@ -75,9 +80,19 @@ def findKeywords(step, listWords):
 				a = end
 		a = a + 1
 	finalIngs = list(set(finalIngs))
-	print("Step: ",step)
-	print("finalIngs: ", finalIngs)
-	print("i_locs: ", i_locs)
-	return finalIngs
+	# print("Step: ",step)
+	# print("finalIngs: ", finalIngs)
+	# print("i_locs: ", i_locs)
+	# print("step: ", step)
+	# print("i_locs: ", i_locs)
+	return finalIngs, i_locs
 
-findKeywords("Cook lasagna noodles in boiling water for 8 to 10 minutes", ["lasagna noodles", "water"])
+findKeywords("Season with sugar chili powder fennel seeds Italian seasoning 1 tablespoon salt pepper and 2 tablespoons parsley", ["Italian Seasoning", "Fennel seeds"])
+
+
+
+
+
+
+
+

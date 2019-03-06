@@ -3,7 +3,7 @@ from knowledgebase import *
 from helpers import *
 from ingredientparser import *
 
-def transformStep(step, bad, sub, num):
+def transformStep(step, bad, sub):
 	# print("step.clean_text", step.clean_text)
 	words = step.clean_text.split()
 	locations = step.i_locs
@@ -12,25 +12,13 @@ def transformStep(step, bad, sub, num):
 	if not bad in locations:
 		return
 	locations_bad = locations[bad]
-	if num == 1:
-		print("step: ",step.clean_text)
-		print("bad: ",bad,locations_bad)
-		print("locs: ", locations)
 	while len(locations_bad) > 0:
 		tup = locations_bad.pop(0)
-		if num == 1:
-			print("tup: ",tup)
 		start = tup[0]
 		end = tup[1]
 		#insert
 		lhs = words[:start]
 		rhs = words[end+1:]
-		if num == 1:
-			print("lhs: ",lhs)
-			print("sub: ", sub.split())
-			print("rhs: ",rhs)
-			print("new clean: ", step.clean_text)
-			print("\n")
 		step.clean_text = " ".join(lhs + sub.split() + rhs)
 		words = step.clean_text.split()
 		#adjust other positions
@@ -60,7 +48,7 @@ def TransformRecipe(recipe, transform, servings):
 		for i in range(0,len(step.ingredients)):
 			for bad_ingredient in bad_ingredients:
 				if step.ingredients[i] == bad_ingredient.name:
-					transformStep(step, bad_ingredient.name, subs[bad_ingredient.name],0)
+					transformStep(step, bad_ingredient.name, subs[bad_ingredient.name])
 					step.ingredients[i] = subs[bad_ingredient.name]
 		step.text = step.clean_text
 	# Quantity and ingredient
@@ -100,8 +88,7 @@ def TransformRecipe(recipe, transform, servings):
 				if len(mex_seasonings) > 0:
 					ms = mex_seasonings.pop(0)
 					for step in recipe.steps:
-						print("About to change a spice")
-						transformStep(step, ingredient.name, ms,1)
+						transformStep(step, ingredient.name, ms)
 						step.text = step.clean_text
 						for j in range(0,len(step.ingredients)):
 							if step.ingredients[j] == ingredient.name:
