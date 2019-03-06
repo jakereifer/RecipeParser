@@ -35,6 +35,40 @@ def transformStep(step, bad, sub):
 						locations[key][j] = (t0,t1)
 					j = j + 1
 
+# def changeIngredientsAndSteps(recipe, transform, servings):
+# 	bad_ingredients = recipe.categories[transform]
+# 	#find substitutes
+# 	made_sub = False
+# 	subs = {}
+# 	for bad_ingredient in bad_ingredients:
+# 		# print("BAD INGR NAME ", bad_ingredient.name)
+# 		subs[bad_ingredient.name] = bad_ingredient.substitute[transform]
+# 	for step in recipe.steps:
+# 		for i in range(0,len(step.ingredients)):
+# 			for bad_ingredient in bad_ingredients:
+# 				if step.ingredients[i] == bad_ingredient.name:
+# 					transformStep(step, bad_ingredient.name, subs[bad_ingredient.name])
+# 					step.ingredients[i] = subs[bad_ingredient.name]
+# 		step.text = step.clean_text
+# 	# Quantity and ingredient
+# 	replacement_dict = substitute_map[transform] 
+# 	for ingredient in recipe.ingredients:
+# 		for k in subs:
+# 			if k == ingredient.name:
+# 				made_sub = True
+# 				ingredient.name = subs[k]
+# 				ingredient.changed = True
+# 				ingredient.preparation = ""
+# 				subs_ingr = replacement_dict[subs[k]]
+# 				# print(subs_ingr.quantity)
+# 				if not ingredient.measurement or not ingredient.measurement in subs_ingr.quantity:
+# 					ingredient.measurement = subs_ingr.quantity["default"][1]
+# 					ingredient.quantity = float(subs_ingr.quantity["default"][0]) * float(servings)
+# 				else:
+# 					ingredient.measurement = subs_ingr.quantity[ingredient.measurement][1]
+# 					ingredient.quantity = float(ingredient.quantity) * float(subs_ingr.quantity[ingredient.measurement][0])
+# quantity
+
 def TransformRecipe(recipe, transform, servings):
 	# grab ingredients to change
 	bad_ingredients = recipe.categories[transform]
@@ -170,6 +204,46 @@ def TransformRecipe(recipe, transform, servings):
 		sliceChicken.tools = ["knife"]
 		recipe.steps.append(sliceChicken)
 
+	if transform == 6:
+		must_change = False
+		for ingredient in recipe.ingredients:
+			if "meat" in ingredient.tags or checkSubMeat(ingredient.name):
+				must_change = True
+				break
+		if must_change:
+			#switch dairy
+			# grab ingredients to change
+			bad_ingredients = recipe.categories["dairy"]
+			#find substitutes
+			subs = {}
+			for bad_ingredient in bad_ingredients:
+				# print("BAD INGR NAME ", bad_ingredient.name)
+				subs[bad_ingredient.name] = bad_ingredient.substitute["dairy"]
+			for step in recipe.steps:
+				for i in range(0,len(step.ingredients)):
+					for bad_ingredient in bad_ingredients:
+						if step.ingredients[i] == bad_ingredient.name:
+							transformStep(step, bad_ingredient.name, subs[bad_ingredient.name])
+							step.ingredients[i] = subs[bad_ingredient.name]
+				step.text = step.clean_text
+			# Quantity and ingredient
+			replacement_dict = substitute_map["dairy"] 
+			for ingredient in recipe.ingredients:
+				for k in subs:
+					if k == ingredient.name:
+						ingredient.name = subs[k]
+						ingredient.changed = True
+						ingredient.preparation = ""
+						subs_ingr = replacement_dict[subs[k]]
+						# print(subs_ingr.quantity)
+						if not ingredient.measurement or not ingredient.measurement in subs_ingr.quantity:
+							ingredient.measurement = subs_ingr.quantity["default"][1]
+							ingredient.quantity = float(subs_ingr.quantity["default"][0]) * float(servings)
+						else:
+							ingredient.measurement = subs_ingr.quantity[ingredient.measurement][1]
+							ingredient.quantity = float(ingredient.quantity) * float(subs_ingr.quantity[ingredient.measurement][0])
+						# quantity
+
 	name_add_ons = { 1: "(Vegetarian)" ,
 	2: "(Non Vegetarian)",
 	3: "(Unhealthy)",
@@ -182,7 +256,12 @@ def TransformRecipe(recipe, transform, servings):
 
 	return removeDuplicates(recipe)
 	
-		
+def checkSubMeat(name):
+	bad_words = ["ground beef", "chicken", "turkey", "kosher hot dog"]
+	for bw in bad_words:
+		if bw in name:
+			return True
+	return False
 
 
 

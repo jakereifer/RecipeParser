@@ -16,6 +16,7 @@ transformations_display = { 0: "None",
 					3: "To unhealthy", # healthy
 					4: "To healthy", # unhealthy
 					5: "To mexican",
+					6: "To kosher"
 					}
 
 transformations = { 0: "NONE",
@@ -24,6 +25,7 @@ transformations = { 0: "NONE",
 					3: "from unhealthy",
 					4: "from healthy", 
 					5: "from not mexican",
+					6: "from not kosher",
 					}
 
 def validatePageLink(err=False):
