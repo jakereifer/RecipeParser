@@ -94,6 +94,7 @@ def TransformRecipe(recipe, transform, servings):
 							if step.ingredients[j] == ingredient.name:
 								step.ingredients[j] = ms
 					ingredient.name = ms
+					ingredient.preparation = ""
 					if not ingredient.measurement:
 						ingredient.measurement = "teaspoon"
 						ingredient.quantity = parse_amount("1")
@@ -119,7 +120,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.ingredients = recipe.ingredients + [bacon,sugar]
 		#creating the steps 
 		cookBacon = Step()
-		cookBacon.text = "cook bacon on pan for fifteen minutes"
+		cookBacon.text = "Cook bacon on pan for fifteen minutes"
 		cookBacon.ingredients = [bacon.name]
 		cookBacon.time = "fifteen minutes"
 		cookBacon.methods = ["cook"]
@@ -127,7 +128,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(cookBacon)
 
 		sliceBacon = Step()
-		sliceBacon.text = "slice bacon into bits"
+		sliceBacon.text = "Slice bacon into bits"
 		sliceBacon.ingredients = [bacon.name]
 		sliceBacon.time = ""
 		sliceBacon.methods = ["slice"]
@@ -135,7 +136,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(sliceBacon)
 
 		spreadUnhealthy = Step()
-		spreadUnhealthy.text = "generously sprinkle bacon bits and powdered sugar over dish"
+		spreadUnhealthy.text = "Generously sprinkle bacon bits and powdered sugar over dish"
 		spreadUnhealthy.ingredients = [bacon.name, sugar.name]
 		spreadUnhealthy.time = ""
 		spreadUnhealthy.methods = ["sprinkle"]
@@ -148,7 +149,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.ingredients.append(chicken)
 
 		grillChicken= Step()
-		grillChicken.text = "cook chicken on pan for 10 to 15 minutes"
+		grillChicken.text = "Cook chicken on pan for 10 to 15 minutes"
 		grillChicken.ingredients = [chicken.name]
 		grillChicken.time = "10 to 15 minutes"
 		grillChicken.methods = ["cook"]
@@ -156,7 +157,7 @@ def TransformRecipe(recipe, transform, servings):
 		recipe.steps.append(grillChicken)
 
 		sliceChicken= Step()
-		sliceChicken.text = "slice chicken into small pieces and scatter over dish"
+		sliceChicken.text = "Slice chicken into small pieces and scatter over dish"
 		sliceChicken.ingredients = [chicken.name]
 		sliceChicken.time = ""
 		sliceChicken.methods = ["slice", "scatter"]

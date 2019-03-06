@@ -25,15 +25,15 @@ class Step(object):
 		if self.text:
 			print("step: ", self.text)
 		if self.ingredients:
-			print("ingredients: ", self.ingredients)
+			print("	ingredients: ", self.ingredients)
 		if self.time:
-			print("time: ", self.time)
+			print("	time: ", self.time)
 		if self.methods:
-			print("methods: ", self.methods)
+			print("	methods: ", self.methods)
 		if self.tools:
-			print("tools: ", self.tools)
-		if self.i_locs:
-			print("i_locs: ", self.i_locs)
+			print("	tools: ", self.tools)
+		# if self.i_locs:
+		# 	print("i_locs: ", self.i_locs)
 
 
 def parseSteps(scraped_steps, scraped_ingredients):
