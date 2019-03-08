@@ -94,9 +94,13 @@ def parseIngredient(i):
 				right_side = ingredient.name
 				# print("name ", ingredient.name)
 			else:
-				ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
-				ingredient.name = right_side.split(pd)[0].strip()
-				right_side = ingredient.name
+				if not "chicken" in ", ".join(right_side.split(pd)[1:]).strip():
+					ingredient.preparation = ", ".join(right_side.split(pd)[1:]).strip()
+					ingredient.name = right_side.split(pd)[0].strip()
+					right_side = ingredient.name
+				else:
+					ingredient.name = right_side.strip()
+					rightside= ""
 	rs_words = right_side.split()
 	found_prep = False
 	for i in range(0,len(rs_words)):

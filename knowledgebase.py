@@ -369,7 +369,7 @@ substitute_map= {
 # 4: unhealthy
 # """
 
-cs = [3, 4, 2, 1, "seasoning",5, 6, "dairy", "meat"]
+cs = [3, 4, 2, 1, "seasoning", 5, 6, "dairy", "meat"]
 categories = {}
 
 for c in cs:
@@ -393,7 +393,7 @@ tools = ["refrigerator","container", "baking sheet","blender","bowl","box grater
 
 primary_methods = ["cook","bake","barbeque","boil","broil","braise","fry","grill","parbake","parboil","poach","roast","sear", "smoke","steam","saute", "sauté", "stir fry","stew",]
 
-secondary_methods = ["simmer", "sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray", "carmelize","flambe","serve","refrigerate","remove", "lift", "arange","add","heat","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
+secondary_methods = ["simmer", "sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray", "carmelize","flambe","serve","refrigerate","remove", "lift", "arange","add","heat","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "drop", "dissolve"]
 
 units = ["sprig","sprigs","bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "container", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
