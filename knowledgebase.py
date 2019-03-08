@@ -178,6 +178,7 @@ ingredients_kb = [
 	Ingredient(name="sage", tags=["seasoning"]),
 	Ingredient(name="salami", tags=[1,6]),
 	Ingredient(name="sardine", tags=[1]),
+	Ingredient(name="sausage", tags=[1,4,6]),
 	Ingredient(name="sausage casing", tags=[1,6]),
 	Ingredient(name="scallop", tags=[1,3,6]),
 	Ingredient(name="sea cucumber", tags=[1,6]),
@@ -394,9 +395,9 @@ primary_methods = ["cook","bake","barbeque","boil","broil","braise","fry","grill
 
 secondary_methods = ["simmer", "sweat","toast", "baste", "melt", "reduce", "render", "temper", "freeze", "clarify", "spray", "carmelize","flambe","serve","refrigerate","remove", "lift", "arange","add","heat","beat","blache","cover","chop","combine", "chill", "crush","cube","cut","deglaze","dice","form", "fold","grind","julienne" ,"knead","mince","mix","pound","preheat","pour","roll","rub","season","shredd","skewer","slice","stir","transfer","tenderize","whisk","spoon", "drain", "sprinkle", "top", "layer", "lay", "place", "set", "strain", "line", "prepare", "refrigerate", "arrange", "turn", "flip", "brush", "galze", "dip" , "spread", "press", "coat", "pat", "save", "reserve","put", "return", "scrape", "peel", "rinsed" "remove", "repeat", "allow","rest", "toss", "distribute", "wash", "fill","mash", "smash", "blend", "cool", "store", "cream", "drop", "dissolve"]
 
-units = ["sprig","sprigs","bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
+units = ["sprig","sprigs","bag","teaspoon","tablespoon","ounce","clove","cup","pint","quart","gallon", "milliliter","liter","pound","gram","milligram","kilogram","pinch", "pinches", "handful","head","loaf","loaves","can","package", "container", "pack","bunch","bushel","T","tsp",'t',"tbl","tbsp",'tbs','c','p','gal','g']
 
-preparations = ["chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
+preparations = ["flavored","chopped","shredded","ground","crushed","sliced","cooked","pureed","peeled","smoked","minced","rinsed","trimmed","uncooked","rolled","pounded","cut","diced", "halved", "melted", "frozen", "clarified"]
 
 """
 method_tools = {

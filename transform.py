@@ -75,7 +75,9 @@ def TransformRecipe(recipe, transform, servings):
 	#find substitutes
 	made_sub = False
 	subs = {}
+	print(bad_ingredients)
 	for bad_ingredient in bad_ingredients:
+
 		# print("BAD INGR NAME ", bad_ingredient.name)
 		subs[bad_ingredient.name] = bad_ingredient.substitute[transform]
 	for step in recipe.steps:
@@ -208,6 +210,7 @@ def TransformRecipe(recipe, transform, servings):
 		must_change = False
 		for ingredient in recipe.ingredients:
 			if "meat" in ingredient.tags or checkSubMeat(ingredient.name):
+				print("Meat found: ", ingredient.name)
 				must_change = True
 				break
 		if must_change:
