@@ -4,68 +4,6 @@ from RecipeClass import *
 from IngredientClass import *
 from SubstituteClass import *
 
-# class Substitute(object):
-# 	canreplace = []
-# 	methods = {}
-# 	quantity = {}
-# 	tools = {}
-	
-	
-# 	def __init__(self, canreplace=[], methods={}, quantity={}, tools={}):
-# 		self.canreplace = canreplace
-# 		self.methods = methods
-# 		self.quantity = quantity
-# 		self.tools = tools
-class Unit(object):
-	name = ''
-	aliases = []
-
-	def __init__(self, n='', a=[]):
-		self.name = n
-		self.aliases = a
-
-measurements = {'volume': [ Unit('teaspoon', ['t', 'tsp']),
-							Unit('tablespoon', ['T', 'tbl', 'tbs', 'tbsp']),
-							Unit('fluid ounce',['fl oz']),
-							Unit('cup', ['c']),
-							Unit('pint', ['p', 'pt', 'fl pt']),
-							Unit('quart', ['q', 'qt', 'fl qt']),
-							Unit('gallon', ['g', 'gal']),
-							Unit('milliliter', ['ml', 'millilitre', 'mL']),
-							Unit('liter', ['l', 'L', 'litre'])],
-				'mass/weight': [ Unit('pound',  ['lb', '#']),
-								Unit('ounce', ['oz']),
-								Unit('milligram', ['mg', 'milligramme']),
-								Unit('gram', ['g', 'gramme']),
-								Unit('kilogram', ['kg', 'kilogramme'])],
-				'time': [ Unit('day',[]),
-						Unit('hour', ['hr']),
-						Unit('minute', ['min']),
-						Unit('second', ['sec', 's'])]
-				}
-
-# not case sensitiv
-#veg_proteins
-# veg_proteins = [ Ingredient(name="tofu", category="protein", subcategory="veg_protein"), Ingredient(name="tempeh", category="protein", subcategory="veg_protein"), Ingredient(name="seitan", category="protein", subcategory="veg_protein"), Ingredient(name="jackfruit", category="protein", subcategory="veg_protein"), Ingredient(name="lentils", category="protein", subcategory="veg_protein"), Ingredient(name="beans", category="protein", subcategory="veg_protein"),
-# 				Ingredient(name="legumes", category="protein", subcategory="veg_protein"), Ingredient(name="texturized vegetable protein (TVP)", category="protein", subcategory="veg_protein"),#tvp
-# 				Ingredient(name="chickpeas", category="protein", subcategory="veg_protein"), Ingredient(name="falafel", category="protein", subcategory="veg_protein"), Ingredient(name="nuts", category="protein", subcategory="veg_protein"), Ingredient(name="soy", category="protein", subcategory="veg_protein"), Ingredient(name="vegetarian bacon", category="protein", subcategory="veg_protein"), Ingredient(name="veggie burger", category="protein", subcategory="veg_protein"),
-# 				Ingredient(name="tofurkey", category="protein", subcategory="veg_protein"), Ingredient(name="veggie dog", category="protein", subcategory="veg_protein"), Ingredient(name="quinoa", category="protein", subcategory="veg_protein"), Ingredient(name='chik\'n', category="protein", subcategory="veg_protein")]
-
-# meat_subs = { Ingredient(name='hamburger', category="protein", subcategory="meat"): [Ingredient(name='veggie burger', category="protein", subcategory="veg_protein"), Ingredient(name='black bean burger', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='meatball', category="protein", subcategory="meat"): [Ingredient(name='veggie meatballs', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='hot dog', category="protein", subcategory="meat"): [Ingredient(name='veggie dog', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='sausage', category="protein", subcategory="meat"): [Ingredient(name='veggie sausage', category="protein", subcategory="veg_protein"), Ingredient(name='tempeh', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='chicken', category="protein", subcategory="meat"): [Ingredient(name='chik\'n', category="protein", subcategory="veg_protein"), Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='default', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name="texturized vegetable protein (TVP)", category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='pork', category="protein", subcategory="meat"): [Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='turkey', category="protein", subcategory="meat"): [Ingredient(name='tofurkey', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='beef', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein"), Ingredient(name='seitan', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='fish', category="protein", subcategory="meat"): [Ingredient(name='tofu', category="protein", subcategory="veg_protein")],
-# 				Ingredient(name='chorizo', category="protein", subcategory="meat"): [Ingredient(name='beans', category="protein", subcategory="veg_protein")]
-# 			}
-
-
-
 ingredients_kb = [
 	Ingredient(name="abalone", tags=[1,6]),
 	Ingredient(name="anchovy", tags=[1,4]),
@@ -310,11 +248,10 @@ substitute_map= {
 "low fat sour cream": Substitute(canreplace=["sour cream"], quantity={"default":(.25, "cup")})
 },
 5: {
-"chili powder": Substitute(canreplace=["turmeric","basil","ginger","nutmeg","cinnamon", "curry powder", "cayenne pepper", "thyme", "rosemary", "sage"]),
-"jalapeno ": Substitute(canreplace=["red pepper", "green pepper", "bell pepper", "yellow pepper"]),
-"lime juice": Substitute(canreplace=["lemon juice", "lemon zest"]),
-"salsa": Substitute(canreplace=["barbeque sauce", "marinara sauce", "pesto", "soy sauce"]),
-"cotija cheese": Substitute(canreplace=["cheese"])
+"jalapeno ": Substitute(canreplace=["red pepper", "green pepper", "bell pepper", "yellow pepper"], quantity={"default": (1, "count")}),
+"lime juice": Substitute(canreplace=["lemon juice", "lemon zest"], quantity={"default": (1, "tablespoon")}),
+"salsa": Substitute(canreplace=["barbeque sauce", "marinara sauce", "pesto", "soy sauce"], quantity={"default": (.25, "cup")}),
+"cotija cheese": Substitute(canreplace=["cheese"], quantity={"default": (1, "ounce")})
 },
 "dairy": {
 "almond milk": Substitute(canreplace=["milk", "buttermilk", "condensed milk"], quantity={"default":(1,"cup")}),
