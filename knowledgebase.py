@@ -227,7 +227,8 @@ ingredients_kb = [
 	Ingredient(name="whole wheat flour", tags=[3]),
 	Ingredient(name="whole wheat pasta", tags=[3]),
 	Ingredient(name="yellow pepper", tags=[5]),
-	Ingredient(name="yogurt", tags=[3,"dairy"])
+	Ingredient(name="yogurt", tags=[3,"dairy"]),
+	Ingredient(name="soy sauce", tags=[5])
 ]
 	
 
@@ -312,7 +313,7 @@ substitute_map= {
 "chili powder": Substitute(canreplace=["turmeric","basil","ginger","nutmeg","cinnamon", "curry powder", "cayenne pepper", "thyme", "rosemary", "sage"]),
 "jalapeno ": Substitute(canreplace=["red pepper", "green pepper", "bell pepper", "yellow pepper"]),
 "lime juice": Substitute(canreplace=["lemon juice", "lemon zest"]),
-"salsa": Substitute(canreplace=["barbeque sauce", "marinara sauce", "pesto"]),
+"salsa": Substitute(canreplace=["barbeque sauce", "marinara sauce", "pesto", "soy sauce"]),
 "cotija cheese": Substitute(canreplace=["cheese"])
 },
 "dairy": {
