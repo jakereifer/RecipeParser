@@ -165,7 +165,8 @@ def ingredientTagsAndSubs(i):
 					2: None,
 					3: None,
 					4: None, 
-          5: None}
+          5: None,
+          6: None}
 	longest = Ingredient()
 	for category, lst in knowledgebase.categories.items():
 		for ingr in lst:
@@ -177,7 +178,8 @@ def ingredientTagsAndSubs(i):
 									2: None,
 									3: None,
 									4: None,
-                  5: None}
+                  5: None,
+                  6: None}
 				if category not in tags:
 					tags.append(category)
 					for sub in knowledgebase.substitute_map[category]:
@@ -192,7 +194,8 @@ def ingredientTagsAndSubs(i):
 										2: None,
 										3: None,
 										4: None,
-                    5: None}
+                    5: None,
+                    6: None}
 					if category not in tags:
 						tags.append(category)
 						for sub in knowledgebase.substitute_map[category]:

@@ -3,6 +3,7 @@ from helpers import *
 from IngredientClass import *
 from StepClass import *
 from ingredientparser import *
+from SubstituteClass import *
 
 class Recipe(object):
 	name = ""
@@ -17,11 +18,11 @@ class Recipe(object):
 					4: [],
 					5: [],
 					"seasoning": [],
-					"6": [],
+					6: [],
 					"dairy": [],
 					}
 
-	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: [], 5: [],"seasoning": [],"6": [],"prepend": []}):
+	def __init__(self, name="", ingredients=[], steps=[], p_methods=[], s_methods=[], tools=[], categories={1: [],2: [], 3: [], 4: [], 5: [],"seasoning": [],6: [],"meat":[], "dairy": []}):
 		self.name = name
 		self.ingredients = ingredients
 		self.steps = steps
