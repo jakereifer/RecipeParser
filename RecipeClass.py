@@ -3,6 +3,7 @@ from helpers import *
 from IngredientClass import *
 from StepClass import *
 from ingredientparser import *
+from SubstituteClass import *
 
 class Recipe(object):
 	name = ""
